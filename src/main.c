@@ -6,7 +6,7 @@
 /*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:22:49 by jchen             #+#    #+#             */
-/*   Updated: 2025/01/06 16:23:43 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/06 18:12:25 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 	}
 	initialize(&data, argv[1]);
 	// CHECK SI MAP NULL POUR FREE_ALL?
-	mlx_hook(data.window->screen, 2, 0, handle_input, &data);
+	// mlx_hook(data.window->screen, 2, 0, handle_input, &data);
 	// FAIRE FONCTION HANDLE INPUT POUR LES KEYS
 	mlx_hook(data.window->screen, 17, 1, free_all, &data);
 	mlx_loop(data.window->ptr);

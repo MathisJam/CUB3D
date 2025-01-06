@@ -6,7 +6,7 @@
 /*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:44:29 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/06 16:20:41 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/06 18:13:06 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ int	free_all(t_data *data)
 	i = -1;
 	if (data == NULL)
 		return (1);
-	if (data->sprite[0])
-		while (++i <= 3)
-			mlx_destroy_image(data->window->ptr, data->sprite[i]);
+	// if (data->sprite[0])
+	// 	while (++i <= 3)
+	// 		mlx_destroy_image(data->window->ptr, data->sprite[i]);
 	if (data->window->screen)
 		mlx_destroy_window(data->window->ptr, data->window->screen);
 	if (data->window->ptr)

@@ -65,16 +65,16 @@ $(LIBFT):
 
 # Target to build the mandatory part
 $(NAME): $(OBJS)
-	@echo "$(GREEN)Compiling... \n"
-	@echo " ░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓███████▓▒░▒▓███████▓▒░░▒▓███████▓▒░  "
-	@echo "░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░     ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░ "
-	@echo "░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░     ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░ "
-	@echo "░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓███████▓▒░▒▓███████▓▒░░▒▓█▓▒░░▒▓█▓▒░ "
-	@echo "░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░     ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░ "
-	@echo "░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░     ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░ "
-	@echo " ░▒▓██████▓▒░ ░▒▓██████▓▒░░▒▓███████▓▒░▒▓███████▓▒░░▒▓███████▓▒░  $(RESET)"
+	@echo "$(GREEN)Compiling... \n $(RESET)"
+	@echo "$(RED)   ____     _   _     ____    _____     ____"
+	@echo "$(YELLOW)U / ___|   | |u| | U | __  u |___ /u   |  _ \   "
+	@echo "$(GREEN)\| | u    \| |\| |  \|  _ \/ U_|_ \/  /| | | |"
+	@echo "$(CYAN) | |/__    | |_| |   | |_) |  ___) |  U| |_| |\ "
+	@echo "$(BLUE)  \____|    \___/    |____/  |____/    |____/ u"
+	@echo "$(RED) _// \\       )(      _|| \\\_   _// \\      |||_    "
+	@echo "$(MAGENTA)(__)(__)    (__)   (__) (__) (__)(__)   (__)_)   $(RESET)"
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX) $(LIBFT) $(INC) $(MLXFLAGS)
-	@echo "$(YELLOW)\n		\o\ Compilation completed! /o/\n"
+	@echo "$(YELLOW)\n	\o\ Compilation completed! /o/\n"
 
 # Compiles C source files into object files
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
