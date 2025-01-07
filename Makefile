@@ -1,4 +1,4 @@
-# Program name
+# Program nameeuheuie
 NAME		=	cub3D
 
 # Compilation flags
