@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:11:07 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/06 16:26:32 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/07 14:04:00 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,41 +28,52 @@
 # define P2 1.57079632679 // PI/2 -> 90 degres (en haut)
 # define P3 4.71238898038 // 3*PI/2 -> 270 degres (en bas)
 
+# define RST "\033[0;39m"
+# define GRAY "\033[0;90m"
+# define RED "\033[5;91m"
+# define GREEN "\033[0;92m"
+# define YELLOW "\033[0;93m"
+# define BLUE "\033[0;94m"
+# define MAGENTA "\033[0;95m"
+# define CYAN "\033[0;96m"
+# define WHITE "\033[0;97m"
+
 typedef enum sprites
 {
 	NO,
 	EA,
 	SO,
 	WE
-}				e_sprites;
-
-typedef struct s_window
-{
-	void		*ptr;
-	void		*screen;
-	int			win_size;
-}				t_window;
+}			e_sprites;
 
 typedef struct s_data
 {
-	int			x;
-	int			y;
-	int			player_x;
-	int			player_y;
-	int			next_x;
-	int			next_y;
-	int			sprite[3];
-	char		**map;
-	t_window	*window;
-}				t_data;
+	void	*mlx_ptr;
+	void	*mlx_win;
+
+	void	*sprite[3];
+	char	**map;
+
+	int		line;
+	int		column;
+	int		player_x;
+	int		player_y;
+	int		next_x;
+	int		next_y;
+}			t_data;
 
 // INIT
-void			initialize(t_data *data, char *argv);
+void		initialize(t_data *data, char *argv);
+
+// MAP
+
+// SAFE FUNCTIONS
+int			safe_open_fd(char *file, int flag, t_data *data);
 
 // FREE & UTILS
-int				check_extension(const char *big, const char *little,
-					size_t len);
-int				free_all(t_data *data);
-void			free_tab(char **tab);
+int			check_extension(const char *big, const char *little, size_t len);
+void		err_msg(char *str);
+int			free_all(t_data *data);
+void		free_tab(char **tab);
 
 #endif

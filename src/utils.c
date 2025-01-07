@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:44:29 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/06 18:13:06 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/07 14:04:34 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@ void	free_tab(char **tab)
 	free(tab);
 }
 
+void	err_msg(char *str)
+{
+	ft_putstr_fd("Error\n", 2);
+	ft_putstr_fd(str, 2);
+}
+
 int	free_all(t_data *data)
 {
 	int	i;
@@ -48,17 +54,24 @@ int	free_all(t_data *data)
 	i = -1;
 	if (data == NULL)
 		return (1);
-	// if (data->sprite[0])
-	// 	while (++i <= 3)
-	// 		mlx_destroy_image(data->window->ptr, data->sprite[i]);
-	if (data->window->screen)
-		mlx_destroy_window(data->window->ptr, data->window->screen);
-	if (data->window->ptr)
+	if (data->sprite[0])
 	{
-		mlx_destroy_display(data->window->ptr);
-		free(data->window->ptr);
+		while (++i <= 3)
+		{
+			if (data->sprite[i])
+				mlx_destroy_image(data->mlx_ptr, data->sprite[i]);
+		}
+	}
+	if (data->mlx_win)
+		mlx_destroy_window(data->mlx_ptr, data->mlx_win);
+	if (data->mlx_ptr)
+	{
+		mlx_destroy_display(data->mlx_ptr);
+		free(data->mlx_ptr);
 	}
 	if (data->map)
 		free_tab(data->map);
+	if (data)
+		free(data);
 	exit(0);
 }

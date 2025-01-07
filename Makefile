@@ -23,7 +23,7 @@ INC			=	-I ./libft/\
 
 # Sources
 SRC_PATH	=	src/
-SRC			=	main.c init.c utils.c
+SRC			=	main.c init.c utils.c safe_functions.c
 
 SRCS		=	$(addprefix $(SRC_PATH), $(SRC))
 
