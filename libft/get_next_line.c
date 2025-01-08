@@ -2,9 +2,12 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
+/*                                                    +:+ +:+
+	+:+     */
+/*   By: jchen <jchen@student.42.fr>                +#+  +:+
+	+#+        */
+/*                                                +#+#+#+#+#+
+	+#+           */
 /*   Created: 2024/09/25 16:58:21 by jchen             #+#    #+#             */
 /*   Updated: 2024/09/25 16:58:23 by jchen            ###   ########.fr       */
 /*                                                                            */
@@ -12,11 +15,12 @@
 
 #include "libft.h"
 
+
 char	*get_next_line(int fd)
 {
-	static char	*buf[4096];
-	char		*line;
-	size_t		old_len;
+	static char *buf[4096];
+	char *line;
+	size_t old_len;
 
 	if (fd < 0 || fd > 4095 || BUFFER_SIZE < 0)
 		return (NULL);
@@ -42,8 +46,8 @@ char	*get_next_line(int fd)
 
 char	*gnl_shrink_buffer(char *buf, char *line)
 {
-	char	*newbuf;
-	int		line_len;
+	char *newbuf;
+	int line_len;
 
 	if (!buf || !line)
 		return (buf);
@@ -60,9 +64,9 @@ char	*gnl_shrink_buffer(char *buf, char *line)
 
 char	*gnl_expand_buffer(char *buf, int fd)
 {
-	char	*newbuf;
-	int		newlen;
-	char	*aux;
+	char *newbuf;
+	int newlen;
+	char *aux;
 
 	aux = gnl_newread(fd);
 	if (!aux)
@@ -87,8 +91,8 @@ char	*gnl_expand_buffer(char *buf, int fd)
 
 char	*gnl_newread(int fd)
 {
-	int		nbytes;
-	char	*aux;
+	int nbytes;
+	char *aux;
 
 	aux = malloc(BUFFER_SIZE + 1);
 	if (!aux)

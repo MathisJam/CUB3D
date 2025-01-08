@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:11:07 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/07 14:04:00 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/08 11:49:54 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <X11/keysym.h>
 # include <fcntl.h>
 # include <math.h>
+# include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
@@ -54,8 +55,10 @@ typedef struct s_data
 	void	*sprite[3];
 	char	**map;
 
-	int		line;
-	int		column;
+	int		x;
+	int		y;
+	int		row_nbr;
+	int		column_nbr;
 	int		player_x;
 	int		player_y;
 	int		next_x;
@@ -66,6 +69,8 @@ typedef struct s_data
 void		initialize(t_data *data, char *argv);
 
 // MAP
+void		load_map(t_data *data, char *map);
+char		**malloc_map(char *map, t_data *data);
 
 // SAFE FUNCTIONS
 int			safe_open_fd(char *file, int flag, t_data *data);
@@ -75,5 +80,7 @@ int			check_extension(const char *big, const char *little, size_t len);
 void		err_msg(char *str);
 int			free_all(t_data *data);
 void		free_tab(char **tab);
+bool		is_starting_row(char *str);
+int			starting_row(char *str, t_data *data);
 
 #endif

@@ -3,14 +3,61 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:44:29 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/07 14:04:34 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/08 11:46:40 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
+
+bool	is_starting_row(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str || ft_strlen(str) == 1)
+		return (false);
+	while (str && (str[i] == '1' || str[i] == ' '))
+		i++;
+	if (str[i] == '\n')
+		return (true);
+	return (false);
+}
+
+int	starting_row(char *str, t_data *data)
+{
+	int		i;
+	int		fd;
+	char	*line;
+	int		start;
+	int		j;
+
+	i = 0;
+	j = 0;
+	start = 0;
+	fd = safe_open_fd(str, O_RDONLY, data);
+	line = get_next_line(fd);
+	while (line != NULL)
+	{
+		i++;
+		j = 0;
+		while (line && (line[j] == '1' || line[j] == ' '))
+			j++;
+		if (j > 1 && (line[j] == '\n'))
+		{
+			start = i;
+			break ;
+		}
+		free(line);
+		line = get_next_line(fd);
+	}
+	if (line)
+		free(line);
+	close(fd);
+	return (start);
+}
 
 int	check_extension(const char *big, const char *little, size_t len)
 {
