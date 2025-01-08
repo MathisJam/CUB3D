@@ -6,7 +6,7 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:03:57 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/08 11:46:02 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/08 11:56:46 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	initialize(t_data *data, char *argv)
 	(void)argv;
 	i = -1;
 	data->map = NULL;
-	data->line = 0;
-	data->column = 0;
+	data->row_nbr = 0;
+	data->column_nbr = 0;
 	data->player_x = 0;
 	data->player_y = 0;
 	while (++i <= 3)

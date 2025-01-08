@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:22:49 by jchen             #+#    #+#             */
-/*   Updated: 2025/01/07 16:48:48 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/08 12:28:09 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	display_char_array(char **array)
 	i = 0;
 	while (array[i])
 	{
-		printf("Element %d: %s\n", i, array[i]);
+		printf("Element %d: %s", i, array[i]);
 		i++;
 	}
 }
@@ -52,6 +52,6 @@ int	main(int argc, char **argv)
 	// mlx_loop(data->mlx_ptr);
 	load_map(data, argv[1]);
 	display_char_array(data->map);
-	printf("%d", data->row);
+	printf("row_nbr : %d", data->row_nbr);
 	free_all(data);
 }

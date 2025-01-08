@@ -3,14 +3,70 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 18:51:04 by jchen             #+#    #+#             */
-/*   Updated: 2025/01/08 11:51:07 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/08 12:43:38 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
+
+static bool	is_starting_row(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str || ft_strlen(str) == 1)
+		return (false);
+	while (str && (str[i] == '1' || str[i] == ' '))
+		i++;
+	if (str[i] == '\n')
+		return (true);
+	return (false);
+}
+
+static int	starting_row_nbr(char *str, t_data *data)
+{
+	int		i;
+	int		fd;
+	char	*line;
+	int		start;
+	int		j;
+
+	i = 0;
+	start = 0;
+	fd = safe_open_fd(str, O_RDONLY, data);
+	line = get_next_line(fd);
+	while (line != NULL)
+	{
+		i++;
+		j = 0;
+		while (line && (line[j] == '1' || line[j] == ' '))
+			j++;
+		if (j > 1 && (line[j] == '\n'))
+		{
+			start = i;
+			break ;
+		}
+		free(line);
+		line = get_next_line(fd);
+	}
+	return (free(line), close(fd), start);
+}
+
+static void	skip_not_map_lines(int fd, int start)
+{
+	int		i;
+	char	*temp;
+
+	i = 0;
+	while (++i < start)
+	{
+		temp = get_next_line(fd);
+		free(temp);
+	}
+}
 
 void	load_map(t_data *data, char *map)
 {
@@ -37,8 +93,6 @@ void	load_map(t_data *data, char *map)
 	}
 	free(line);
 	close(fd);
-	data->x = data->column_nbr * 64;
-	data->y = data->row_nbr * 64;
 	data->map = malloc_map(map, data);
 }
 
@@ -49,16 +103,13 @@ char	**malloc_map(char *map, t_data *data)
 	int		i;
 	int		start;
 
+	start = starting_row_nbr(map, data);
+	printf("starting row nbr = %d\n", start);
 	fd = open(map, O_RDONLY);
-	start = starting_row(map, data);
 	map_array = NULL;
 	if (data->row_nbr != 0)
-		map_array = malloc((data->row_nbr + 1) * sizeof(char *));
-	if (!map_array)
-		return (NULL);
-	i = 0;
-	while (++i < start)
-		get_next_line(fd);
+		map_array = safe_malloc((data->row_nbr + 1) * sizeof(char *), data);
+	skip_not_map_lines(fd, start);
 	i = -1;
 	while (data->row_nbr > ++i)
 	{
