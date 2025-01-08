@@ -6,7 +6,7 @@
 /*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:36:23 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/08 15:01:58 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/08 15:40:07 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,30 @@ static int	check_line(char *line)
 // 		return (0);
 // 	return (1);
 // }
+
+static int	double_char(char **map)
+{
+	int	i;
+	int	j;
+	int	flag;
+
+	i = -1;
+	flag = 0;
+	while (map[++i])
+	{
+		j = -1;
+		while (map[i][++j])
+		{
+			if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E'
+				|| map[i][j] == 'W')
+				flag++;
+		}
+	}
+	if (flag != 1)
+		return (1);
+	else
+		return (0);
+}
 
 static int	invalid_char(char **map)
 {
@@ -106,6 +130,11 @@ void	check_map(t_data *data)
 	if (invalid_char(data->map))
 	{
 		err_msg("Invalid char in map, please only use NSWE01\n");
+		free_all(data, 1);
+	}
+	if (double_char(data->map))
+	{
+		err_msg("Need one and only one N S W E char\n");
 		free_all(data, 1);
 	}
 }
