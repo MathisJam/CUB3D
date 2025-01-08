@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:44:29 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/08 12:35:34 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/08 12:46:21 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	err_msg(char *str)
 	ft_putstr_fd(str, 2);
 }
 
-int	free_all(t_data *data)
+int	free_all(t_data *data, int exit_status)
 {
 	int	i;
 
@@ -73,5 +73,5 @@ int	free_all(t_data *data)
 		free_tab(data->map);
 	if (data)
 		free(data);
-	exit(0);
+	exit(exit_status);
 }

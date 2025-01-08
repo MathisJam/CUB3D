@@ -6,8 +6,106 @@
 /*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:36:23 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/08 11:36:55 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/08 14:46:08 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
+
+static bool	is_space(char c)
+{
+	return ((c >= 9 && c <= 13) || (c == ' '));
+}
+
+static int	check_line(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] && (is_space(line[i]) || line[i] == '1'))
+		i++;
+	if (line[i] == '\0')
+		return (0);
+	else
+		return (1);
+}
+
+// static int	check_first_non_space(char *line)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (is_space(line[i]))
+// 		i++;
+// 	if (line[i] != '1')
+// 		return (0);
+// 	return (1);
+// }
+
+static int	invalid_char(char **map)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (map[++i])
+	{
+		j = -1;
+		while (map[i][++j])
+		{
+			if (map[i][j] != '1' && map[i][j] != '0' && map[i][j] != 'N'
+				&& map[i][j] != 'S' && map[i][j] != 'E' && map[i][j] != 'W'
+				&& !is_space(map[i][j]))
+				return (1);
+		}
+	}
+	return (0);
+}
+
+static int	close_check(t_data *data, char **map)
+{
+	int	i;
+	int	j;
+	int	len;
+
+	i = -1;
+	if (check_line(map[0]))
+		return (1);
+	if (check_line(map[(data->y / 64) - 1]))
+		return (1);
+	while (++i < (data->row_nbr))
+	{
+		j = 0;
+		while (is_space(map[i][j]))
+			j++;
+		if (map[i][j] != '1')
+			return (1);
+		len = ft_strlen(map[i]) - 1;
+		while (len > 0 && is_space(map[i][len]))
+			len--;
+		if (map[i][len] != '1')
+			return (1);
+	}
+	if (i < 3)
+	{
+		err_msg("Map not closed");
+		free_all(data, 1);
+	}
+	return (0);
+}
+
+void	check_map(t_data *data)
+{
+	data->x = data->column_nbr * 64;
+	data->y = data->row_nbr * 64;
+	if (close_check(data, data->map))
+	{
+		err_msg("Map is not closed\n");
+		free_all(data, 1);
+	}
+	if (invalid_char(data->map))
+	{
+		err_msg("Invalid char in map, please only use NSWE01\n");
+		free_all(data, 1);
+	}
+}

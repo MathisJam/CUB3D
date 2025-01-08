@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:22:49 by jchen             #+#    #+#             */
-/*   Updated: 2025/01/08 12:28:09 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/08 12:49:51 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ int	main(int argc, char **argv)
 	// mlx_hook(data->mlx_win, 17, 1, free_all, data);
 	// mlx_loop(data->mlx_ptr);
 	load_map(data, argv[1]);
+	check_map(data);
 	display_char_array(data->map);
 	printf("row_nbr : %d", data->row_nbr);
-	free_all(data);
+	free_all(data, 0);
 }

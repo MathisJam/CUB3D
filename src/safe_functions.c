@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   safe_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:00:14 by jchen             #+#    #+#             */
-/*   Updated: 2025/01/08 12:11:54 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/08 12:50:35 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	safe_open_fd(char *file, int flag, t_data *data)
 	if (fd < 0)
 	{
 		err_msg("Failed to open fd\n");
-		free_all(data);
+		free_all(data, 1);
 	}
 	return (fd);
 }
@@ -33,7 +33,7 @@ void	*safe_malloc(size_t bytes, t_data *data)
 	if (!allocation)
 	{
 		err_msg("Malloc failed\n");
-		free_all(data);
+		free_all(data, 1);
 	}
 	return (allocation);
 }

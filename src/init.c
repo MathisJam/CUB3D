@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:03:57 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/08 11:56:46 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/08 12:50:21 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	check_mlx_win_init(t_data *data)
 	if (data->mlx_win == NULL)
 	{
 		err_msg("Window initialization failed\n");
-		free_all(data);
+		free_all(data, 1);
 	}
 }
 
@@ -29,7 +29,7 @@ static void	check_mlx_ptr_init(t_data *data)
 	if (data->mlx_ptr == NULL)
 	{
 		err_msg("Mlx initialization failed\n");
-		free_all(data);
+		free_all(data, 1);
 	}
 }
 
