@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:22:49 by jchen             #+#    #+#             */
-/*   Updated: 2025/01/08 16:43:07 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/08 18:36:46 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ int	main(int argc, char **argv)
 	check_map(data);
 	display_char_array(data->map);
 	printf("row_nbr : %d", data->row_nbr);
+	get_map_info(data, argv[1]);
 	free_all(data, 0);
 }

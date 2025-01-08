@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:03:57 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/08 16:49:37 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/08 18:35:49 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,13 @@ void	initialize(t_data *data)
 	data->map_start = 0;
 	data->player_x = 0;
 	data->player_y = 0;
+	data->textures = ft_calloc(1, sizeof(t_textures));
+	data->textures->NO_path = NULL;
+	data->textures->EA_path = NULL;
+	data->textures->WE_path = NULL;
+	data->textures->SO_path = NULL;
+	data->textures->F = 0;
+	data->textures->C = 0;
 	// INIT LES FLOATS?
 	// check_mlx_ptr_init(data);
 	// check_mlx_win_init(data);

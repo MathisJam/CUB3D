@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 18:51:04 by jchen             #+#    #+#             */
-/*   Updated: 2025/01/08 16:44:14 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/08 18:25:55 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-static bool	is_map_start(char *str)
+bool	is_map_start(char *str)
 {
 	int	i;
 

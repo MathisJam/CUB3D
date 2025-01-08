@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:44:29 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/08 16:55:29 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/08 18:53:03 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,20 @@ void	free_textures(t_data *data)
 {
 	if (data->textures->NO)
 		mlx_destroy_image(data->mlx_ptr, data->textures->NO);
+	if (data->textures->NO_path)
+		free(data->textures->NO_path);
 	if (data->textures->EA)
 		mlx_destroy_image(data->mlx_ptr, data->textures->EA);
+	if (data->textures->EA_path)
+		free(data->textures->EA_path);
 	if (data->textures->SO)
 		mlx_destroy_image(data->mlx_ptr, data->textures->SO);
+	if (data->textures->SO_path)
+		free(data->textures->SO_path);
 	if (data->textures->WE)
 		mlx_destroy_image(data->mlx_ptr, data->textures->WE);
+	if (data->textures->WE_path)
+		free(data->textures->WE_path);
 }
 
 int	free_all(t_data *data, int exit_status)
@@ -69,7 +77,10 @@ int	free_all(t_data *data, int exit_status)
 	if (data == NULL)
 		return (1);
 	if (data->textures)
+	{
 		free_textures(data);
+		free(data->textures);
+	}
 	if (data->mlx_win)
 		mlx_destroy_window(data->mlx_ptr, data->mlx_win);
 	if (data->mlx_ptr)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:11:07 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/08 16:56:02 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/08 18:25:58 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,26 @@
 # define CYAN "\033[0;96m"
 # define WHITE "\033[0;97m"
 
+enum			e_textures
+{
+	NO,
+	EA,
+	SO,
+	WE,
+	F,
+	C
+};
+
 typedef struct s_textures
 {
 	void		*NO;
 	void		*EA;
 	void		*SO;
 	void		*WE;
+	char		*NO_path;
+	char		*WE_path;
+	char		*EA_path;
+	char		*SO_path;
 	float		F;
 	float		C;
 }				t_textures;
@@ -75,6 +89,8 @@ void			initialize(t_data *data);
 void			load_map(t_data *data, char *map);
 char			**malloc_map(char *map, t_data *data);
 void			check_map(t_data *data);
+void			get_map_info(t_data *data, char *map);
+bool			is_map_start(char *str);
 
 // SAFE FUNCTIONS
 int				safe_open_fd(char *file, int flag, t_data *data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:36:23 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/08 16:40:51 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/08 19:39:11 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ void	check_map(t_data *data)
 	if (data->map_start < 7)
 		err_msg("Don't forget the paths to the textures\n", data, true);
 	if (close_check(data, data->map))
-		err_msg("Map is not closed\n", data, true);
+		err_msg("Map is not closed, or is not at the end\n", data, true);
 	if (invalid_char(data->map))
 		err_msg("Invalid char in map, please only use NSWE01\n", data, true);
 	if (double_char(data->map))
