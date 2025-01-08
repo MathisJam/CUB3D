@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 18:51:04 by jchen             #+#    #+#             */
-/*   Updated: 2025/01/08 15:01:47 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/08 15:17:49 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,11 @@ char	**malloc_map(char *map, t_data *data)
 	int		start;
 
 	start = starting_row_nbr(map, data);
+	if (start < 7)
+	{
+		err_msg("Don't forget the paths to the textures\n");
+		free_all(data, 1);
+	}
 	printf("starting row nbr = %d\n", start);
 	fd = open(map, O_RDONLY);
 	map_array = NULL;
