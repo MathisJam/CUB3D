@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:44:29 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/08 12:46:21 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/08 16:55:29 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,24 @@ void	free_tab(char **tab)
 	free(tab);
 }
 
-void	err_msg(char *str)
+void	err_msg(char *str, t_data *data, bool to_free)
 {
 	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd(str, 2);
+	if (to_free == true)
+		free_all(data, 1);
+}
+
+void	free_textures(t_data *data)
+{
+	if (data->textures->NO)
+		mlx_destroy_image(data->mlx_ptr, data->textures->NO);
+	if (data->textures->EA)
+		mlx_destroy_image(data->mlx_ptr, data->textures->EA);
+	if (data->textures->SO)
+		mlx_destroy_image(data->mlx_ptr, data->textures->SO);
+	if (data->textures->WE)
+		mlx_destroy_image(data->mlx_ptr, data->textures->WE);
 }
 
 int	free_all(t_data *data, int exit_status)
@@ -54,14 +68,8 @@ int	free_all(t_data *data, int exit_status)
 	i = -1;
 	if (data == NULL)
 		return (1);
-	if (data->sprite[0])
-	{
-		while (++i <= 3)
-		{
-			if (data->sprite[i])
-				mlx_destroy_image(data->mlx_ptr, data->sprite[i]);
-		}
-	}
+	if (data->textures)
+		free_textures(data);
 	if (data->mlx_win)
 		mlx_destroy_window(data->mlx_ptr, data->mlx_win);
 	if (data->mlx_ptr)

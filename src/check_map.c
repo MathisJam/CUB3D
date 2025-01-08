@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:36:23 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/08 15:40:07 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/08 16:40:51 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,10 +111,7 @@ static int	close_check(t_data *data, char **map)
 			return (1);
 	}
 	if (i < 3)
-	{
-		err_msg("Map not closed");
-		free_all(data, 1);
-	}
+		err_msg("Map not closed", data, true);
 	return (0);
 }
 
@@ -122,19 +119,12 @@ void	check_map(t_data *data)
 {
 	data->x = data->column_nbr * 64;
 	data->y = data->row_nbr * 64;
+	if (data->map_start < 7)
+		err_msg("Don't forget the paths to the textures\n", data, true);
 	if (close_check(data, data->map))
-	{
-		err_msg("Map is not closed\n");
-		free_all(data, 1);
-	}
+		err_msg("Map is not closed\n", data, true);
 	if (invalid_char(data->map))
-	{
-		err_msg("Invalid char in map, please only use NSWE01\n");
-		free_all(data, 1);
-	}
+		err_msg("Invalid char in map, please only use NSWE01\n", data, true);
 	if (double_char(data->map))
-	{
-		err_msg("Need one and only one N S W E char\n");
-		free_all(data, 1);
-	}
+		err_msg("Need one and only one N S W E char\n", data, true);
 }

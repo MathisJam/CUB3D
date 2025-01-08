@@ -6,13 +6,13 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 18:51:04 by jchen             #+#    #+#             */
-/*   Updated: 2025/01/08 15:17:49 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/08 16:44:14 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-static bool	is_starting_row(char *str)
+static bool	is_map_start(char *str)
 {
 	int	i;
 
@@ -26,7 +26,7 @@ static bool	is_starting_row(char *str)
 	return (false);
 }
 
-static int	starting_row_nbr(char *str, t_data *data)
+static int	map_line_nbr(char *str, t_data *data)
 {
 	int		i;
 	int		fd;
@@ -68,6 +68,7 @@ static void	skip_not_map_lines(int fd, int start)
 	}
 }
 
+// ICICICICICICI peut etre probleme (taille y)
 void	load_map(t_data *data, char *map)
 {
 	int		fd;
@@ -79,13 +80,14 @@ void	load_map(t_data *data, char *map)
 	start = 0;
 	fd = safe_open_fd(map, O_RDONLY, data);
 	line = get_next_line(fd);
-	if (line != 0)
-		data->column_nbr = ft_strlen(line) - 1;
 	while (line != NULL)
 	{
 		i++;
-		if (is_starting_row(line) == true)
+		if (is_map_start(line) == true)
+		{
 			start = i;
+			data->column_nbr = ft_strlen(line) - 1;
+		}
 		if (start)
 			data->row_nbr++;
 		free(line);
@@ -101,28 +103,21 @@ char	**malloc_map(char *map, t_data *data)
 	char	**map_array;
 	int		fd;
 	int		i;
-	int		start;
 
-	start = starting_row_nbr(map, data);
-	if (start < 7)
-	{
-		err_msg("Don't forget the paths to the textures\n");
-		free_all(data, 1);
-	}
-	printf("starting row nbr = %d\n", start);
+	if (!(data->map_start = map_line_nbr(map, data)))
+		err_msg("Map not found\n", data, true);
 	fd = open(map, O_RDONLY);
 	map_array = NULL;
 	if (data->row_nbr != 0)
 		map_array = safe_malloc((data->row_nbr + 1) * sizeof(char *), data);
-	skip_not_map_lines(fd, start);
+	skip_not_map_lines(fd, data->map_start);
 	i = -1;
-	while (data->row_nbr > ++i)
+	while (data->row_nbr != 0 && data->row_nbr > ++i)
 	{
 		map_array[i] = get_next_line(fd);
 		if (!map_array[i])
 			return (free_tab(map_array), NULL);
 	}
 	map_array[i] = NULL;
-	close(fd);
-	return (map_array);
+	return (close(fd), map_array);
 }

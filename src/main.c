@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:22:49 by jchen             #+#    #+#             */
-/*   Updated: 2025/01/08 12:49:51 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/08 16:43:07 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,11 @@ int	main(int argc, char **argv)
 	(void)argc;
 	data = ft_calloc(1, sizeof(t_data));
 	if (!data)
-		err_msg("Malloc failed\n");
+		ft_putstr_fd("Error\nMalloc failed\n", 2);
 	// if (argc != 2 || check_extension(argv[1], ".cub",
 	// ft_strlen(argv[1])) == 1)
-	// {
-	// 	err_msg("1 argument required, try : ");
-	// 	ft_putstr_fd(RED "./cub3D [map.cub]\n" RST, 2);
-	// 	exit(1);
-	// }
-	// initialize(data, argv[1]);
+	// err_msg("please enter : ./cub3D [map.cub]\n", data, true);
+	initialize(data);
 	// // CHECK SI MAP NULL POUR FREE_ALL?
 	// // mlx_hook(data.window->mlx_win, 2, 0, handle_input, data);
 	// // FAIRE FONCTION HANDLE INPUT POUR LES KEYS

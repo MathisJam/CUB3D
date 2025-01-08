@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:11:07 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/08 12:46:27 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/08 16:56:02 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,48 +39,53 @@
 # define CYAN "\033[0;96m"
 # define WHITE "\033[0;97m"
 
-typedef enum sprites
+typedef struct s_textures
 {
-	NO,
-	EA,
-	SO,
-	WE
-}			e_sprites;
+	void		*NO;
+	void		*EA;
+	void		*SO;
+	void		*WE;
+	float		F;
+	float		C;
+}				t_textures;
 
 typedef struct s_data
 {
-	void	*mlx_ptr;
-	void	*mlx_win;
+	void		*mlx_ptr;
+	void		*mlx_win;
 
-	void	*sprite[3];
-	char	**map;
+	int			x;
+	int			y;
+	int			row_nbr;
+	int			column_nbr;
+	int			map_start;
+	int			player_x;
+	int			player_y;
+	int			next_x;
+	int			next_y;
 
-	int		x;
-	int		y;
-	int		row_nbr;
-	int		column_nbr;
-	int		player_x;
-	int		player_y;
-	int		next_x;
-	int		next_y;
-}			t_data;
+	char		**map;
+	t_textures	*textures;
+}				t_data;
 
 // INIT
-void		initialize(t_data *data, char *argv);
+void			initialize(t_data *data);
 
 // MAP
-void		load_map(t_data *data, char *map);
-char		**malloc_map(char *map, t_data *data);
-void		check_map(t_data *data);
+void			load_map(t_data *data, char *map);
+char			**malloc_map(char *map, t_data *data);
+void			check_map(t_data *data);
 
 // SAFE FUNCTIONS
-int			safe_open_fd(char *file, int flag, t_data *data);
-void		*safe_malloc(size_t bytes, t_data *data);
+int				safe_open_fd(char *file, int flag, t_data *data);
+void			*safe_malloc(size_t bytes, t_data *data);
 
 // FREE & UTILS
-int			check_extension(const char *big, const char *little, size_t len);
-void		err_msg(char *str);
-int			free_all(t_data *data, int exit_status);
-void		free_tab(char **tab);
+int				check_extension(const char *big, const char *little,
+					size_t len);
+void			err_msg(char *str, t_data *data, bool to_free);
+void			free_textures(t_data *data);
+void			free_tab(char **tab);
+int				free_all(t_data *data, int exit_status);
 
 #endif
