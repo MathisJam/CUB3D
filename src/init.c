@@ -6,7 +6,7 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:03:57 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/07 13:57:16 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/08 11:46:02 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	initialize(t_data *data, char *argv)
 {
 	int	i;
 
+	(void)argv;
 	i = -1;
 	data->map = NULL;
 	data->line = 0;
@@ -45,7 +46,7 @@ void	initialize(t_data *data, char *argv)
 	data->player_y = 0;
 	while (++i <= 3)
 		data->sprite[i] = NULL;
-	load_map(data, argv[1]);
+	// load_map(data, argv[1]);
 	check_mlx_ptr_init(data);
 	check_mlx_win_init(data);
 	// set_position du player
