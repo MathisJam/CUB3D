@@ -6,7 +6,7 @@
 /*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:11:07 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/08 18:25:58 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/11 13:21:23 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,10 @@ typedef struct s_textures
 	char		*WE_path;
 	char		*EA_path;
 	char		*SO_path;
-	float		F;
-	float		C;
+	char		**F_strings;
+	char		**C_strings;
+	int			*F;
+	int			*C;
 }				t_textures;
 
 typedef struct s_data
@@ -84,6 +86,8 @@ typedef struct s_data
 
 // INIT
 void			initialize(t_data *data);
+void			get_floor_ceiling(t_data *data);
+void			set_player_pos(t_data *data);
 
 // MAP
 void			load_map(t_data *data, char *map);
@@ -103,5 +107,6 @@ void			err_msg(char *str, t_data *data, bool to_free);
 void			free_textures(t_data *data);
 void			free_tab(char **tab);
 int				free_all(t_data *data, int exit_status);
+int	count_strings(char **strings); // DEBUG a enlever
 
 #endif

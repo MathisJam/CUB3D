@@ -6,7 +6,7 @@
 /*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:03:57 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/08 18:35:49 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/11 13:21:32 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,27 @@
 // 	if (data->mlx_ptr == NULL)
 // 		err_msg("Mlx initialization failed\n, data, true");
 // }
+
+void	set_player_pos(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (data->map[++i])
+	{
+		j = -1;
+		while (data->map[i][++j])
+		{
+			if (data->map[i][j] == 'N' || data->map[i][j] == 'S'
+				|| data->map[i][j] == 'E' || data->map[i][j] == 'W')
+			{
+				data->player_x = j;
+				data->player_y = i;
+			}
+		}
+	}
+}
 
 void	initialize(t_data *data)
 {
@@ -47,9 +68,9 @@ void	initialize(t_data *data)
 	data->textures->SO_path = NULL;
 	data->textures->F = 0;
 	data->textures->C = 0;
-	// INIT LES FLOATS?
+	data->textures->F_strings = 0;
+	data->textures->C_strings = 0;
 	// check_mlx_ptr_init(data);
 	// check_mlx_win_init(data);
-	// set_position du player
 	// initialiser la map avec textures
 }

@@ -6,7 +6,7 @@
 /*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:44:29 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/08 18:53:03 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/11 12:42:39 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,14 @@ void	free_textures(t_data *data)
 		mlx_destroy_image(data->mlx_ptr, data->textures->WE);
 	if (data->textures->WE_path)
 		free(data->textures->WE_path);
+	if (data->textures->C)
+		free(data->textures->C);
+	if (data->textures->C_strings)
+		free_tab(data->textures->C_strings);
+	if (data->textures->F)
+		free(data->textures->F);
+	if (data->textures->F_strings)
+		free_tab(data->textures->F_strings);
 }
 
 int	free_all(t_data *data, int exit_status)

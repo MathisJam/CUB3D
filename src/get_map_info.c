@@ -6,7 +6,7 @@
 /*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:38:11 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/08 19:36:15 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/11 12:47:15 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,9 @@ static int	is_texture(t_data *data, char *line)
 
 static void	get_textures_info(t_data *data, char *line, int code)
 {
+	int	j;
+
+	j = -1;
 	if (code == NO && catch_path(line) != NULL)
 		data->textures->NO_path = ft_strdup(catch_path(line));
 	else if (code == EA && catch_path(line) != NULL)
@@ -56,16 +59,17 @@ static void	get_textures_info(t_data *data, char *line, int code)
 	else if (code == SO && catch_path(line) != NULL)
 		data->textures->SO_path = ft_strdup(catch_path(line));
 	else if (code == F)
-		data->textures->F = atoi(line + 1);
+		data->textures->F_strings = ft_split(line, ',');
 	else if (code == C)
-		data->textures->C = atoi(line + 1);
+		data->textures->C_strings = ft_split(line, ',');
+	get_floor_ceiling(data);
 }
 
 static bool	valid_textures_info(t_data *data)
 {
 	if (!data->textures->NO_path || !data->textures->EA_path
 		|| !data->textures->WE_path || !data->textures->SO_path
-		|| !data->textures->F || !data->textures->C)
+		|| !data->textures->F_strings || !data->textures->C_strings)
 		return (false);
 	return (true);
 }
@@ -94,7 +98,7 @@ void	get_map_info(t_data *data, char *map)
 		close(fd);
 		err_msg("Missing textures paths\n", data, true);
 	}
-	printf("%s", data->textures->NO_path);
+	printf("NO = %s\n", data->textures->NO_path);
 	free(line);
 	close(fd);
 }
