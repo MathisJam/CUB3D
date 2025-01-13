@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_floor_ceiling.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 11:59:52 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/11 12:53:37 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/13 12:46:14 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	count_strings(char **strings)
 	return (count);
 }
 
-static int	*convert_to_int_arr(char **tab)
+static int	*convert_to_int_arr(char **tab, t_data *data)
 {
 	int	i;
 	int	count;
@@ -67,13 +67,30 @@ static int	*convert_to_int_arr(char **tab)
 		if (tab[i])
 			arr[i] = atoi_skip_alpha(tab[i]);
 		else
-			arr[i] = 0;
+			arr[i] = -1;
+		if (0 > arr[i] || arr[i] > 255)
+			err_msg("C or F value must be between 0 and 255\n", data, true);
 	}
 	return (arr);
 }
 
 void	get_floor_ceiling(t_data *data)
 {
-	data->textures->C = convert_to_int_arr(data->textures->C_strings);
-	data->textures->F = convert_to_int_arr(data->textures->F_strings);
+	int	i;
+
+	i = -1;
+	data->textures->C = convert_to_int_arr(data->textures->C_strings, data);
+	data->textures->F = convert_to_int_arr(data->textures->F_strings, data);
+	if (data->textures->F && data->textures->C)
+	{
+		while (data->textures->F[++i])
+			;
+		if (i != 3)
+			err_msg("F is missing one value\n", data, true);
+		i = -1;
+		while (data->textures->C[++i])
+			;
+		if (i != 3)
+			err_msg("C is missing one value\n", data, true);
+	}
 }

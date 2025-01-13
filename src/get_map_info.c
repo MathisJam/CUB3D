@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map_info.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:38:11 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/11 12:47:15 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/13 12:46:32 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ static void	get_textures_info(t_data *data, char *line, int code)
 		data->textures->F_strings = ft_split(line, ',');
 	else if (code == C)
 		data->textures->C_strings = ft_split(line, ',');
-	get_floor_ceiling(data);
 }
 
 static bool	valid_textures_info(t_data *data)
@@ -98,7 +97,6 @@ void	get_map_info(t_data *data, char *map)
 		close(fd);
 		err_msg("Missing textures paths\n", data, true);
 	}
-	printf("NO = %s\n", data->textures->NO_path);
 	free(line);
 	close(fd);
 }

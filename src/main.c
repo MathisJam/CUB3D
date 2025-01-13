@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:22:49 by jchen             #+#    #+#             */
-/*   Updated: 2025/01/11 13:25:01 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/13 12:46:22 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	main(int argc, char **argv)
 	load_map(data, argv[1]);
 	check_map(data);
 	get_map_info(data, argv[1]);
+	get_floor_ceiling(data);
 	set_player_pos(data);
 	//----------------------------------------------------PARTIE DEBUG--------------------------------------------------
 	display_char_array(data->map);
