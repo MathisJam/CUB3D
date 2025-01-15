@@ -6,7 +6,7 @@
 /*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:11:07 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/11 13:21:23 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/15 11:22:32 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@
 # define P0 6.283185307   // PI*2 -> 0 ou 360 degres (a droite)
 # define P2 1.57079632679 // PI/2 -> 90 degres (en haut)
 # define P3 4.71238898038 // 3*PI/2 -> 270 degres (en bas)
+
+# define FOV 60               // field of view
+# define ROTATION_SPEED 0.045 // rotation speed
+# define PLAYER_SPEED 4       // player speed
 
 # define RST "\033[0;39m"
 # define GRAY "\033[0;90m"
@@ -107,6 +111,8 @@ void			err_msg(char *str, t_data *data, bool to_free);
 void			free_textures(t_data *data);
 void			free_tab(char **tab);
 int				free_all(t_data *data, int exit_status);
-int	count_strings(char **strings); // DEBUG a enlever
+int				count_strings(char **strings);
+
+void			debug(t_data *data);
 
 #endif
