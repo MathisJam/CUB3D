@@ -6,7 +6,7 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:11:07 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/15 11:30:07 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/15 12:36:09 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,17 +104,20 @@ void			get_floor_ceiling(t_data *data);
 
 // SAFE FUNCTIONS
 int				safe_open_fd(char *file, int flag, t_data *data);
-void			*safe_malloc(size_t bytes, t_data *data);
+void			*malloc_fd(size_t bytes, t_data *data, int *fd);
 
-// FREE & UTILS
+// UTILS
 int				check_extension(const char *big, const char *little,
 					size_t len);
+int				count_strings(char **strings);
+char			*strdup_without_n(const char *s);
+bool			is_space(char c);
+
+// FREE
 void			err_msg(char *str, t_data *data, bool to_free);
 void			free_textures(t_data *data);
 void			free_tab(char **tab);
 int				free_all(t_data *data, int exit_status);
-int				count_strings(char **strings);
-
 void			debug(t_data *data);
 
 #endif

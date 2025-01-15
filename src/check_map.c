@@ -6,16 +6,11 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:36:23 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/13 12:49:54 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/15 12:24:49 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-
-static bool	is_space(char c)
-{
-	return ((c >= 9 && c <= 13) || (c == ' '));
-}
 
 static int	check_line(char *line)
 {
@@ -29,18 +24,6 @@ static int	check_line(char *line)
 	else
 		return (1);
 }
-
-// static int	check_first_non_space(char *line)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (is_space(line[i]))
-// 		i++;
-// 	if (line[i] != '1')
-// 		return (0);
-// 	return (1);
-// }
 
 static int	double_char(char **map)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 18:51:04 by jchen             #+#    #+#             */
-/*   Updated: 2025/01/08 18:25:55 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/15 12:36:45 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,19 +104,20 @@ char	**malloc_map(char *map, t_data *data)
 	int		fd;
 	int		i;
 
-	if (!(data->map_start = map_line_nbr(map, data)))
+	data->map_start = map_line_nbr(map, data);
+	if (!(data->map_start))
 		err_msg("Map not found\n", data, true);
 	fd = open(map, O_RDONLY);
 	map_array = NULL;
 	if (data->row_nbr != 0)
-		map_array = safe_malloc((data->row_nbr + 1) * sizeof(char *), data);
+		map_array = malloc_fd((data->row_nbr + 1) * sizeof(char *), data, &fd);
 	skip_not_map_lines(fd, data->map_start);
 	i = -1;
 	while (data->row_nbr != 0 && data->row_nbr > ++i)
 	{
 		map_array[i] = get_next_line(fd);
 		if (!map_array[i])
-			return (free_tab(map_array), NULL);
+			return (free_tab(map_array), close(fd), NULL);
 	}
 	map_array[i] = NULL;
 	return (close(fd), map_array);

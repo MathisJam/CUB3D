@@ -6,7 +6,7 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:00:14 by jchen             #+#    #+#             */
-/*   Updated: 2025/01/08 16:44:38 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/15 12:36:09 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,15 @@ int	safe_open_fd(char *file, int flag, t_data *data)
 	return (fd);
 }
 
-void	*safe_malloc(size_t bytes, t_data *data)
+void	*malloc_fd(size_t bytes, t_data *data, int *fd)
 {
 	void	*allocation;
 
 	allocation = malloc(bytes);
 	if (!allocation)
+	{
+		close(*fd);
 		err_msg("Malloc failed\n", data, true);
+	}
 	return (allocation);
 }

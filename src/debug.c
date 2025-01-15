@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:12:15 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/13 15:13:20 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/15 12:23:15 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,11 @@ static void	display_char_array(char **array)
 
 void	debug(t_data *data)
 {
-	int count; // DEBUG a enlever
-	//----------------------------------------------------PARTIE DEBUG--------------------------------------------------
+	int	count;
+
+	printf("\nTABLEAU :\n");
 	display_char_array(data->map);
+	printf("\n");
 	printf("row_nbr : %d\n", data->row_nbr);
 	count = count_strings(data->textures->F_strings);
 	if (data->textures->F)
@@ -55,6 +57,9 @@ void	debug(t_data *data)
 		}
 		printf("\n");
 	}
-	printf("Player x = %d\n Player y = %d\n", data->player_x, data->player_y);
-	//----------------------------------------------------FIN PARTIE DEBUG--------------------------------------------------
+	printf("Player x = %d\nPlayer y = %d\n", data->player_x, data->player_y);
+	printf("NO = %s\n", data->textures->NO_path);
+	printf("SO = %s\n", data->textures->SO_path);
+	printf("WE = %s\n", data->textures->WE_path);
+	printf("EA = %s\n", data->textures->EA_path);
 }

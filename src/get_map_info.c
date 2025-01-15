@@ -6,7 +6,7 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:38:11 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/13 12:46:32 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/15 12:37:37 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,13 @@ static void	get_textures_info(t_data *data, char *line, int code)
 
 	j = -1;
 	if (code == NO && catch_path(line) != NULL)
-		data->textures->NO_path = ft_strdup(catch_path(line));
+		data->textures->NO_path = strdup_without_n(catch_path(line));
 	else if (code == EA && catch_path(line) != NULL)
-		data->textures->EA_path = ft_strdup(catch_path(line));
+		data->textures->EA_path = strdup_without_n(catch_path(line));
 	else if (code == WE && catch_path(line) != NULL)
-		data->textures->WE_path = ft_strdup(catch_path(line));
+		data->textures->WE_path = strdup_without_n(catch_path(line));
 	else if (code == SO && catch_path(line) != NULL)
-		data->textures->SO_path = ft_strdup(catch_path(line));
+		data->textures->SO_path = strdup_without_n(catch_path(line));
 	else if (code == F)
 		data->textures->F_strings = ft_split(line, ',');
 	else if (code == C)
@@ -84,9 +84,8 @@ void	get_map_info(t_data *data, char *map)
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		if (is_map_start(line) == true)
-			break ;
-		if ((code = is_texture(data, line)) > -1)
+		code = is_texture(data, line);
+		if (code > -1)
 			get_textures_info(data, line, code);
 		free(line);
 		line = get_next_line(fd);

@@ -6,7 +6,7 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:22:49 by jchen             #+#    #+#             */
-/*   Updated: 2025/01/15 11:28:43 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/15 12:39:10 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,11 @@ int	main(int argc, char **argv)
 		err_msg("please enter : ./cub3D [map.cub]\n", data, true);
 	init_data(data);
 	init_map(data, argv);
-	check_mlx_ptr_init(data);
-	check_mlx_win_init(data);
-	// mlx_hook(data->mlx_win, 2, 0, handle_input, data); // Finir ca
-	mlx_hook(data->mlx_win, 17, 1, free_all, data);
-	mlx_loop(data->mlx_ptr);
+	debug(data);
+	// check_mlx_ptr_init(data);
+	// check_mlx_win_init(data);
+	// // // mlx_hook(data->mlx_win, 2, 0, handle_input, data); // Finir ca
+	// mlx_hook(data->mlx_win, 17, 1, free_all, data);
+	// mlx_loop(data->mlx_ptr);
 	free_all(data, 0);
 }
