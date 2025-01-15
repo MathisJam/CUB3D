@@ -6,7 +6,7 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 11:59:52 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/13 12:46:14 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/15 11:43:15 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ static int	*convert_to_int_arr(char **tab, t_data *data)
 
 	i = -1;
 	count = count_strings(tab);
+	if (count != 3)
+		err_msg("F or C is missing one value\n", data, true);
 	arr = malloc(sizeof(int) * count);
 	if (!arr)
 		return (NULL);
@@ -76,21 +78,6 @@ static int	*convert_to_int_arr(char **tab, t_data *data)
 
 void	get_floor_ceiling(t_data *data)
 {
-	int	i;
-
-	i = -1;
 	data->textures->C = convert_to_int_arr(data->textures->C_strings, data);
 	data->textures->F = convert_to_int_arr(data->textures->F_strings, data);
-	if (data->textures->F && data->textures->C)
-	{
-		while (data->textures->F[++i])
-			;
-		if (i != 3)
-			err_msg("F is missing one value\n", data, true);
-		i = -1;
-		while (data->textures->C[++i])
-			;
-		if (i != 3)
-			err_msg("C is missing one value\n", data, true);
-	}
 }
