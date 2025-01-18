@@ -23,7 +23,9 @@ INC			=	-I ./libft/\
 
 # Sources
 SRC_PATH	=	src/
-SRC			=	main.c init.c utils.c safe_functions.c read_map.c check_map.c get_map_info.c get_floor_ceiling.c debug.c free.c
+SRC			=	main.c init.c utils.c safe_functions.c read_map.c check_map.c \
+				get_map_info.c get_floor_ceiling.c debug.c free.c textures.c \
+				game_inputs.c
 
 SRCS		=	$(addprefix $(SRC_PATH), $(SRC))
 
@@ -67,7 +69,7 @@ $(LIBFT):
 $(NAME): $(OBJS)
 	@echo "$(GREEN)Compiling... \n $(RESET)"
 	@echo "$(RED)   ____     _   _     ____    _____     ____"
-	@echo "$(YELLOW)U / ___|   | |u| | U | __  u |___ /u   |  _ \   "
+	@echo "$(YELLOW)U / ___| u | |u| | U | __  u |___ /u   |  _ \   "
 	@echo "$(GREEN)\| | u    \| |\| |  \|  _ \/ U_|_ \/  /| | | |"
 	@echo "$(CYAN) | |/__    | |_| |   | |_) |  ___) |  U| |_| |\ "
 	@echo "$(BLUE)  \____|    \___/    |____/  |____/    |____/ u"

@@ -2,23 +2,19 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+        
-	+:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+      
-	+#+        */
-/*                                                +#+#+#+#+#+  
-	+#+           */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 16:58:09 by jchen             #+#    #+#             */
-/*   Updated: 2024/09/25 16:58:14 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/18 13:59:37 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-
 size_t	gnl_strlen(const char *s)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (!s)
@@ -30,9 +26,9 @@ size_t	gnl_strlen(const char *s)
 
 char	*gnl_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t s_len;
-	char *substr;
-	size_t i;
+	size_t	s_len;
+	char	*substr;
+	size_t	i;
 
 	if (!s)
 		return (NULL);
@@ -59,8 +55,8 @@ char	*gnl_substr(char const *s, unsigned int start, size_t len)
 
 size_t	gnl_strlcpy(char *dst, const char *src, size_t size)
 {
-	unsigned int i;
-	size_t size_src;
+	unsigned int	i;
+	size_t			size_src;
 
 	i = 0;
 	if (src == NULL)
@@ -86,8 +82,8 @@ size_t	gnl_strlcpy(char *dst, const char *src, size_t size)
 
 int	gnl_strchr_i(const char *s, int c)
 {
-	unsigned char c_unsigned;
-	int i;
+	unsigned char	c_unsigned;
+	int				i;
 
 	i = 0;
 	if (!s)
@@ -106,8 +102,8 @@ int	gnl_strchr_i(const char *s, int c)
 
 size_t	gnl_strlcat(char *dst, const char *src, size_t size)
 {
-	char *ptr;
-	unsigned int i;
+	char			*ptr;
+	unsigned int	i;
 
 	if (size < gnl_strlen(dst))
 		return (gnl_strlen(src) + size);

@@ -6,7 +6,7 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:11:07 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/15 12:36:09 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/18 13:52:18 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_textures
 	char		**C_strings;
 	int			*F;
 	int			*C;
+	int			img_size;
 }				t_textures;
 
 typedef struct s_data
@@ -89,10 +90,10 @@ typedef struct s_data
 }				t_data;
 
 // INIT
-void			check_mlx_win_init(t_data *data);
-void			check_mlx_ptr_init(t_data *data);
-void			set_player_pos(t_data *data);
 void			init_data(t_data *data);
+void			set_player_pos(t_data *data);
+void			init_mlx(t_data *data);
+void			init_textures(t_data *data);
 
 // MAP
 void			load_map(t_data *data, char *map);
@@ -101,6 +102,7 @@ void			check_map(t_data *data);
 void			get_map_info(t_data *data, char *map);
 bool			is_map_start(char *str);
 void			get_floor_ceiling(t_data *data);
+void			display_map(t_data *data);
 
 // SAFE FUNCTIONS
 int				safe_open_fd(char *file, int flag, t_data *data);
@@ -112,6 +114,9 @@ int				check_extension(const char *big, const char *little,
 int				count_strings(char **strings);
 char			*strdup_without_n(const char *s);
 bool			is_space(char c);
+
+// INPUTS
+int				handle_input(int keysym, t_data *data);
 
 // FREE
 void			err_msg(char *str, t_data *data, bool to_free);
