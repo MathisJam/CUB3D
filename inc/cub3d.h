@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:11:07 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/18 13:52:18 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/18 14:06:57 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,12 @@ enum			e_textures
 	C
 };
 
+typedef struct s_coord
+{
+	double		x;
+	double		y;
+}				t_coord;
+
 typedef struct s_textures
 {
 	void		*NO;
@@ -69,11 +75,55 @@ typedef struct s_textures
 	int			*C;
 	int			img_size;
 }				t_textures;
+typedef struct s_player
+{
+	double		px;
+	double		py;
+	t_coord		dir_vect;
+	t_coord		cam_plane_vect;
+	double		cam_height;
+	double		speed;
+	double		sens;
+}				t_player;
+
+typedef struct s_image
+{
+	void		*img_ptr;
+	char		*data;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+	int			width;
+	int			height;
+}				t_image;
+
+typedef struct s_ray
+{
+	int			curr_x;
+	int			map_x;
+	int			map_y;
+	double		cam_x;
+	double		ray_dir_x;
+	double		ray_dir_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	double		prep_wall_dist;
+	int			step_x;
+	int			step_y;
+	int			hit;
+	int			side;
+	int			line_height;
+	int			draw_start;
+	int			draw_end;
+}				t_ray;
 
 typedef struct s_data
 {
 	void		*mlx_ptr;
 	void		*mlx_win;
+	t_image		*mlx_img;
 
 	int			x;
 	int			y;
@@ -87,6 +137,8 @@ typedef struct s_data
 
 	char		**map;
 	t_textures	*textures;
+	t_player	*player;
+	t_ray		*ray;
 }				t_data;
 
 // INIT

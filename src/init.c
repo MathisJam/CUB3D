@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:03:57 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/18 13:23:20 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/18 14:07:01 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,24 @@ void	set_player_pos(t_data *data)
 	}
 }
 
+void	init_player(t_data *data)
+{
+	t_ray	*ray;
+
+	data->player = malloc(sizeof(t_player));
+	if (!data->player)
+		quit_data(data, "Error: malloc() failure in data->player\n", 1);
+	data->player->dir_vect.x = 0;
+	data->player->dir_vect.y = 0;
+	data->player->cam_plane_vect.x = 0;
+	data->player->cam_plane_vect.y = 0;
+	data->player->px = 5;
+	data->player->py = 5;
+	data->player->sens = 0.1;
+	data->player->speed = 0.05;
+	data->player->cam_height = 1.0;
+}
+
 void	init_data(t_data *data)
 {
 	int	i;
@@ -56,6 +74,7 @@ void	init_data(t_data *data)
 	data->textures->C = 0;
 	data->textures->F_strings = 0;
 	data->textures->C_strings = 0;
+	init_player(data);
 }
 
 void	init_mlx(t_data *data)
