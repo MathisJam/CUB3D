@@ -6,11 +6,22 @@
 /*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:03:57 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/18 14:07:01 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/18 15:35:48 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
+
+static void	init_img(t_data *data)
+{
+	t_image	*img;
+
+	img = malloc(sizeof(t_image));
+	if (!img)
+		err_msg("malloc() failure in img\n", data, 1);
+	data->mlx_img = malloc(sizeof(t_image));
+	ft_bzero(data->mlx_img, sizeof(t_image));
+}
 
 void	set_player_pos(t_data *data)
 {
@@ -35,11 +46,9 @@ void	set_player_pos(t_data *data)
 
 void	init_player(t_data *data)
 {
-	t_ray	*ray;
-
 	data->player = malloc(sizeof(t_player));
 	if (!data->player)
-		quit_data(data, "Error: malloc() failure in data->player\n", 1);
+		err_msg("malloc() failure in data->player\n", data, 1);
 	data->player->dir_vect.x = 0;
 	data->player->dir_vect.y = 0;
 	data->player->cam_plane_vect.x = 0;
@@ -75,6 +84,7 @@ void	init_data(t_data *data)
 	data->textures->F_strings = 0;
 	data->textures->C_strings = 0;
 	init_player(data);
+	init_img(data);
 }
 
 void	init_mlx(t_data *data)

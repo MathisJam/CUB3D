@@ -6,7 +6,7 @@
 /*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:11:07 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/18 14:06:57 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/18 16:18:03 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,16 @@ enum			e_textures
 	C
 };
 
+typedef struct s_line
+{
+	int			x;
+	int			y;
+	int			y0;
+	int			y1;
+	int			tex_x;
+	int			tex_y;
+}				t_line;
+
 typedef struct s_coord
 {
 	double		x;
@@ -75,6 +85,7 @@ typedef struct s_textures
 	int			*C;
 	int			img_size;
 }				t_textures;
+
 typedef struct s_player
 {
 	double		px;
@@ -123,7 +134,6 @@ typedef struct s_data
 {
 	void		*mlx_ptr;
 	void		*mlx_win;
-	t_image		*mlx_img;
 
 	int			x;
 	int			y;
@@ -146,6 +156,11 @@ void			init_data(t_data *data);
 void			set_player_pos(t_data *data);
 void			init_mlx(t_data *data);
 void			init_textures(t_data *data);
+
+// RENDER AFFICHAGE ET CO
+int				render(void *arg);
+void			raytracing(t_data *data, t_ray *ray);
+void			prep_height(t_ray *ray, t_player *player);
 
 // MAP
 void			load_map(t_data *data, char *map);

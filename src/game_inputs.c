@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_inputs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 13:48:32 by jchen             #+#    #+#             */
-/*   Updated: 2025/01/18 13:51:19 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/18 15:48:52 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	move(t_data *data, int new_x, int new_y)
 		data->player_x = new_x;
 		data->map[new_y][new_x] = 'S';
 	}
-	display_map(data);
+	// display_map(data);
 }
 
 int	handle_input(int keysym, t_data *data)

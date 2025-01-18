@@ -6,7 +6,7 @@
 /*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 13:06:47 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/18 14:02:40 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/18 16:03:41 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	raytracing(t_data *data, t_ray *ray)
 	init_values(ray, player);
 	determine_step(ray, player);
 	algo_dda(data, ray);
-	// prep_height
+	prep_height(ray, player);
 	// draw_textures
 	ray->curr_x++;
 }

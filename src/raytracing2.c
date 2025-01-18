@@ -1,0 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raytracing2.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/18 15:52:44 by mjameau           #+#    #+#             */
+/*   Updated: 2025/01/18 16:02:44 by mjameau          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../inc/cub3d.h"
+
+/*
+Fonction qui determine les distances et mets draw start et draw end a jour
+
+1. Obtiens la distance de l'intersection entre le point et la perpendiculaire du mur
+	/ cam
+2. Obtiens la hauteur de la line via la longueur de l'ecran
+3. Calcule le + petit et + grand pixel a dessiner
+*/
+void	prep_height(t_ray *ray, t_player *player)
+{
+	if (ray->side == WE || ray->side == EA)
+		ray->prep_wall_dist = ((double)ray->map_x - player->px + (1
+					- ray->step_x) / 2) / ray->ray_dir_x;
+	else
+		ray->prep_wall_dist = ((double)ray->map_y - player->py + (1
+					- ray->step_y) / 2) / ray->ray_dir_y;
+	ray->line_height = 1920 / ray->prep_wall_dist;
+	ray->draw_start = -ray->line_height / 2 + ((1920 / 2) * player->cam_height);
+	if (ray->draw_start <= 0)
+		ray->draw_start = 0;
+	ray->draw_end = ray->line_height / 2 + ((1920 / 2) * player->cam_height);
+	if (ray->draw_end >= 1920)
+		ray->draw_end = 1920 - 1;
+}
