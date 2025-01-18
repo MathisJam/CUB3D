@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:11:07 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/18 17:44:18 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/18 18:11:08 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,6 +196,10 @@ void			init_textures(t_data *data);
 int				render(void *arg);
 void			raytracing(t_data *data, t_ray *ray);
 void			prep_height(t_ray *ray, t_player *player);
+void			draw_texture_image(t_data *data, t_ray *ray, t_line *line,
+					t_texture *img);
+void			paint_line(t_data *data, t_line *line, int *rgb);
+void			draw_textures(t_data *data, t_ray *ray, t_player *player);
 
 // MAP
 void			load_map(t_data *data, char *map);

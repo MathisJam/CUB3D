@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:03:57 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/18 17:27:55 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/18 18:02:25 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,20 @@ void	init_data(t_data *data)
 	data->player_x = 0;
 	data->player_y = 0;
 	data->mlx_img = ft_calloc(1, sizeof(t_texture));
+	if (!data->mlx_img)
+		err_msg("Allocation failed for mlx_img", data, true);
 	data->NO = ft_calloc(1, sizeof(t_texture));
+	if (!data->NO)
+		err_msg("Allocation failed for NO", data, true);
 	data->SO = ft_calloc(1, sizeof(t_texture));
+	if (!data->SO)
+		err_msg("Allocation failed for SO", data, true);
 	data->WE = ft_calloc(1, sizeof(t_texture));
+	if (!data->WE)
+		err_msg("Allocation failed for WE", data, true);
 	data->EA = ft_calloc(1, sizeof(t_texture));
-	ft_bzero(data->mlx_img, sizeof(t_texture));
+	if (!data->EA)
+		err_msg("Allocation failed for EA", data, true);
 	ft_bzero(data->SO, sizeof(t_texture));
 	ft_bzero(data->NO, sizeof(t_texture));
 	ft_bzero(data->EA, sizeof(t_texture));

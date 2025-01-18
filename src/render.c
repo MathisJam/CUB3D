@@ -3,22 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 13:52:01 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/18 17:42:47 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/18 18:55:24 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-// static void	load_texture(t_data *data, t_image *img, char *path)
+// static void	load_texture(t_data *data, t_texture *img, char *path)
 // {
 // 	int	width;
 // 	int	height;
 
-// 	width = 64;
-// 	height = 64;
 // 	img->img_ptr = mlx_xpm_file_to_image(data->mlx_ptr, path, &width, &height);
 // 	if (!img->img_ptr)
 // 		err_msg("mlx_xpm_file_to_image() failure\n", data, true);
@@ -88,8 +86,8 @@ int	render(void *arg)
 	ft_bzero(ray, sizeof(t_ray));
 	while (ray->curr_x < 1920)
 		raytracing(data, ray);
-	// mlx_put_image_to_window(data->mlx_ptr, data->mlx_win,
-	// 	data->mlx_img->img_ptr, 0, 0);
+	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win,
+		data->mlx_img->img_ptr, 0, 0);
 	free(ray);
 	// si on veut mettre event handler
 	return (0);

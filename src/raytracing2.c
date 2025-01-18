@@ -6,7 +6,7 @@
 /*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 15:52:44 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/18 16:02:44 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/18 18:51:30 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,13 @@ void	prep_height(t_ray *ray, t_player *player)
 	else
 		ray->prep_wall_dist = ((double)ray->map_y - player->py + (1
 					- ray->step_y) / 2) / ray->ray_dir_y;
-	ray->line_height = 1920 / ray->prep_wall_dist;
-	ray->draw_start = -ray->line_height / 2 + ((1920 / 2) * player->cam_height);
+	ray->line_height = WIN_HEIGHT / ray->prep_wall_dist;
+	ray->draw_start = -ray->line_height / 2 + ((WIN_HEIGHT / 2)
+			* player->cam_height);
 	if (ray->draw_start <= 0)
 		ray->draw_start = 0;
-	ray->draw_end = ray->line_height / 2 + ((1920 / 2) * player->cam_height);
-	if (ray->draw_end >= 1920)
-		ray->draw_end = 1920 - 1;
+	ray->draw_end = ray->line_height / 2 + ((WIN_HEIGHT / 2)
+			* player->cam_height);
+	if (ray->draw_end >= WIN_HEIGHT)
+		ray->draw_end = WIN_HEIGHT - 1;
 }
