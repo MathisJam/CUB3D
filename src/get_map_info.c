@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map_info.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:38:11 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/18 15:43:45 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/18 17:31:31 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,17 @@ static char	*catch_path(char *line)
 
 static int	is_texture(t_data *data, char *line)
 {
-	if (ft_strstr(line, "NO") && !data->textures->NO_path)
+	if (ft_strstr(line, "NO") && !data->NO->path)
 		return (NO);
-	else if (ft_strstr(line, "EA"))
+	else if (ft_strstr(line, "EA") && !data->EA->path)
 		return (EA);
-	else if (ft_strstr(line, "WE"))
+	else if (ft_strstr(line, "WE") && !data->WE->path)
 		return (WE);
-	else if (ft_strstr(line, "SO"))
+	else if (ft_strstr(line, "SO") && !data->SO->path)
 		return (SO);
-	else if (ft_strstr(line, "F"))
+	else if (ft_strstr(line, "F") && !data->F_strings)
 		return (F);
-	else if (ft_strstr(line, "C"))
+	else if (ft_strstr(line, "C") && !data->C_strings)
 		return (C);
 	return (-1);
 }
@@ -51,24 +51,23 @@ static void	get_textures_info(t_data *data, char *line, int code)
 
 	j = -1;
 	if (code == NO && catch_path(line) != NULL)
-		data->textures->NO_path = strdup_without_n(catch_path(line));
+		data->NO->path = strdup_without_n(catch_path(line));
 	else if (code == EA && catch_path(line) != NULL)
-		data->textures->EA_path = strdup_without_n(catch_path(line));
+		data->EA->path = strdup_without_n(catch_path(line));
 	else if (code == WE && catch_path(line) != NULL)
-		data->textures->WE_path = strdup_without_n(catch_path(line));
+		data->WE->path = strdup_without_n(catch_path(line));
 	else if (code == SO && catch_path(line) != NULL)
-		data->textures->SO_path = strdup_without_n(catch_path(line));
+		data->SO->path = strdup_without_n(catch_path(line));
 	else if (code == F)
-		data->textures->F_strings = ft_split(line, ',');
+		data->F_strings = ft_split(line, ',');
 	else if (code == C)
-		data->textures->C_strings = ft_split(line, ',');
+		data->C_strings = ft_split(line, ',');
 }
 
 static bool	valid_textures_info(t_data *data)
 {
-	if (!data->textures->NO_path || !data->textures->EA_path
-		|| !data->textures->WE_path || !data->textures->SO_path
-		|| !data->textures->F_strings || !data->textures->C_strings)
+	if (!data->NO->path || !data->EA->path || !data->WE->path || !data->SO->path
+		|| !data->F_strings || !data->C_strings)
 		return (false);
 	return (true);
 }

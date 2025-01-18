@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 13:52:01 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/18 16:32:44 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/18 17:42:47 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,18 @@
 static void	paint_texture_line(t_data *data, t_ray *ray, t_line *line,
 		double wall_x)
 {
-	t_image	*img;
-	int		tex_x;
+	t_texture	*img;
+	int			tex_x;
 
-	img = data->textures->NO;
+	img = data->NO;
 	if (ray->side == EA)
-		img = data->textures->EA;
+		img = data->EA;
 	else if (ray->side == WE)
-		img = data->textures->WE;
+		img = data->WE;
 	else if (ray->side == NO)
-		img = data->textures->NO;
+		img = data->NO;
 	else if (ray->side == SO)
-		img = data->textures->SO;
+		img = data->SO;
 	tex_x = (int)(wall_x * (double)img->width);
 	if ((ray->side == WE || ray->side == EA) && ray->ray_dir_x > 0)
 		tex_x = img->width - tex_x - 1;
@@ -71,10 +71,10 @@ void	draw_textures(t_data *data, t_ray *ray, t_player *player)
 		paint_texture_line(data, ray, line, wall_x);
 	line->y0 = 0;
 	line->y1 = ray->draw_start;
-	paint_line(data, line, data->textures->C);
+	paint_line(data, line, data->C);
 	line->y0 = 1080;
 	line->y1 = ray->draw_end;
-	paint_line(data, line, data->textures->F);
+	paint_line(data, line, data->F);
 	free(line);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:36:23 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/15 12:41:03 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/18 17:28:22 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static int	close_check(t_data *data, char **map)
 	i = -1;
 	if (check_line(map[0]))
 		return (1);
-	if (check_line(map[(data->y / 64) - 1]))
+	if (check_line(map[(data->row_nbr) - 1]))
 		return (1);
 	while (++i < (data->row_nbr))
 	{
@@ -100,8 +100,6 @@ static int	close_check(t_data *data, char **map)
 
 void	check_map(t_data *data)
 {
-	data->x = data->column_nbr * 64;
-	data->y = data->row_nbr * 64;
 	if (data->map_start < 7)
 		err_msg("Don't forget the paths to the textures\n", data, true);
 	if (close_check(data, data->map))

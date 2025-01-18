@@ -6,7 +6,7 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 11:59:52 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/15 11:43:15 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/18 17:31:51 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,6 @@ static int	*convert_to_int_arr(char **tab, t_data *data)
 
 void	get_floor_ceiling(t_data *data)
 {
-	data->textures->C = convert_to_int_arr(data->textures->C_strings, data);
-	data->textures->F = convert_to_int_arr(data->textures->F_strings, data);
+	data->C = convert_to_int_arr(data->C_strings, data);
+	data->F = convert_to_int_arr(data->F_strings, data);
 }

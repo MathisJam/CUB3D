@@ -1,9 +1,8 @@
 NO	./rsrc/textures/distributeur.xpm
 SO	./rsrc/textures/vide.xpm
+F	220,100,4
 WE	./rsrc/textures/toilettes.xpm
 EA	./rsrc/textures/tableau42.xpm
-
-F	220,100,4
 C	225,30,15
 
         1111111111111111111111111

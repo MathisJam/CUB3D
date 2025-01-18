@@ -6,7 +6,7 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:12:15 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/15 12:23:15 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/18 17:32:49 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,29 +37,29 @@ void	debug(t_data *data)
 	display_char_array(data->map);
 	printf("\n");
 	printf("row_nbr : %d\n", data->row_nbr);
-	count = count_strings(data->textures->F_strings);
-	if (data->textures->F)
+	count = count_strings(data->F_strings);
+	if (data->F)
 	{
 		printf("Tableau d'entiers F : ");
 		for (int i = 0; i < count; i++)
 		{
-			printf("%d ", data->textures->F[i]);
+			printf("%d ", data->F[i]);
 		}
 		printf("\n");
 	}
-	count = count_strings(data->textures->C_strings);
-	if (data->textures->C)
+	count = count_strings(data->C_strings);
+	if (data->C)
 	{
 		printf("Tableau d'entiers C : ");
 		for (int i = 0; i < count; i++)
 		{
-			printf("%d ", data->textures->C[i]);
+			printf("%d ", data->C[i]);
 		}
 		printf("\n");
 	}
 	printf("Player x = %d\nPlayer y = %d\n", data->player_x, data->player_y);
-	printf("NO = %s\n", data->textures->NO_path);
-	printf("SO = %s\n", data->textures->SO_path);
-	printf("WE = %s\n", data->textures->WE_path);
-	printf("EA = %s\n", data->textures->EA_path);
+	printf("NO = %s\n", data->NO->path);
+	printf("SO = %s\n", data->SO->path);
+	printf("WE = %s\n", data->WE->path);
+	printf("EA = %s\n", data->EA->path);
 }

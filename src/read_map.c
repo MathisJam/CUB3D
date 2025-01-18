@@ -6,7 +6,7 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 18:51:04 by jchen             #+#    #+#             */
-/*   Updated: 2025/01/15 12:36:45 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/18 17:26:24 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ static void	skip_not_map_lines(int fd, int start)
 	}
 }
 
-// ICICICICICICI peut etre probleme (taille y)
 void	load_map(t_data *data, char *map)
 {
 	int		fd;

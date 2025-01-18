@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:11:07 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/18 16:18:03 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/18 17:44:18 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 # define FOV 60               // field of view
 # define ROTATION_SPEED 0.045 // rotation speed
 # define PLAYER_SPEED 4       // player speed
+# define WIN_WIDTH 1920
+# define WIN_HEIGHT 1080
 
 # define RST "\033[0;39m"
 # define GRAY "\033[0;90m"
@@ -53,60 +55,11 @@ enum			e_textures
 	C
 };
 
-typedef struct s_line
-{
-	int			x;
-	int			y;
-	int			y0;
-	int			y1;
-	int			tex_x;
-	int			tex_y;
-}				t_line;
-
 typedef struct s_coord
 {
 	double		x;
 	double		y;
 }				t_coord;
-
-typedef struct s_textures
-{
-	void		*NO;
-	void		*EA;
-	void		*SO;
-	void		*WE;
-	char		*NO_path;
-	char		*WE_path;
-	char		*EA_path;
-	char		*SO_path;
-	char		**F_strings;
-	char		**C_strings;
-	int			*F;
-	int			*C;
-	int			img_size;
-}				t_textures;
-
-typedef struct s_player
-{
-	double		px;
-	double		py;
-	t_coord		dir_vect;
-	t_coord		cam_plane_vect;
-	double		cam_height;
-	double		speed;
-	double		sens;
-}				t_player;
-
-typedef struct s_image
-{
-	void		*img_ptr;
-	char		*data;
-	int			bits_per_pixel;
-	int			line_length;
-	int			endian;
-	int			width;
-	int			height;
-}				t_image;
 
 typedef struct s_ray
 {
@@ -130,13 +83,82 @@ typedef struct s_ray
 	int			draw_end;
 }				t_ray;
 
+typedef struct s_texture
+{
+	void		*img_ptr;
+	char		*data;
+	char		*path;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+	int			width;
+	int			height;
+}				t_texture;
+
+typedef struct s_line
+{
+	int			x;
+	int			y;
+	int			y0;
+	int			y1;
+	int			tex_x;
+	int			tex_y;
+}				t_line;
+
+typedef struct s_player
+{
+	double		px;
+	double		py;
+	t_coord		dir_vect;
+	t_coord		cam_plane_vect;
+	double		cam_height;
+	double		speed;
+	double		sens;
+}				t_player;
+
+// typedef struct s_game
+// {
+// 	char			**map;
+// 	int				player_found;
+// 	t_player		*player;
+// }				t_game;
+
+// typedef struct s_control
+// {
+// 	int	look_left;
+// 	int	look_right;
+// 	int	look_up;
+// 	int	look_down;
+// 	int	move_left;
+// 	int	move_right;
+// 	int	move_fwd;
+// 	int	move_bwd;
+// }				t_control;
+
+// typedef struct s_old_textures
+// {
+// 	void		*NO;
+// 	void		*EA;
+// 	void		*SO;
+// 	void		*WE;
+// 	char		*NO_path;
+// 	char		*WE_path;
+// 	char		*EA_path;
+// 	char		*SO_path;
+// 	char		**F_strings;
+// 	char		**C_strings;
+// 	int			*F;
+// 	int			*C;
+// 	int			img_size;
+// }				t_old_textures;
+
 typedef struct s_data
 {
+	// MLX
 	void		*mlx_ptr;
 	void		*mlx_win;
 
-	int			x;
-	int			y;
+	// MAP
 	int			row_nbr;
 	int			column_nbr;
 	int			map_start;
@@ -144,9 +166,22 @@ typedef struct s_data
 	int			player_y;
 	int			next_x;
 	int			next_y;
-
 	char		**map;
-	t_textures	*textures;
+
+	// FLOOR & CEILING
+	char		**F_strings;
+	char		**C_strings;
+	int			*F;
+	int			*C;
+
+	// AUTRES
+	t_texture	*mlx_img;
+	t_texture	*NO;
+	t_texture	*SO;
+	t_texture	*WE;
+	t_texture	*EA;
+	// t_game		*game;
+	// t_control	*control;
 	t_player	*player;
 	t_ray		*ray;
 }				t_data;
