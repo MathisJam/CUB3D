@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map_info.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:38:11 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/18 17:31:31 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/19 11:13:49 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,17 @@ static char	*catch_path(char *line)
 static int	is_texture(t_data *data, char *line)
 {
 	if (ft_strstr(line, "NO") && !data->NO->path)
-		return (NO);
+		return (NORTH);
 	else if (ft_strstr(line, "EA") && !data->EA->path)
-		return (EA);
+		return (EAST);
 	else if (ft_strstr(line, "WE") && !data->WE->path)
-		return (WE);
+		return (WEST);
 	else if (ft_strstr(line, "SO") && !data->SO->path)
-		return (SO);
+		return (SOUTH);
 	else if (ft_strstr(line, "F") && !data->F_strings)
-		return (F);
+		return (Fnum);
 	else if (ft_strstr(line, "C") && !data->C_strings)
-		return (C);
+		return (Cnum);
 	return (-1);
 }
 
@@ -50,17 +50,17 @@ static void	get_textures_info(t_data *data, char *line, int code)
 	int	j;
 
 	j = -1;
-	if (code == NO && catch_path(line) != NULL)
+	if (code == NORTH && catch_path(line) != NULL)
 		data->NO->path = strdup_without_n(catch_path(line));
-	else if (code == EA && catch_path(line) != NULL)
+	else if (code == EAST && catch_path(line) != NULL)
 		data->EA->path = strdup_without_n(catch_path(line));
-	else if (code == WE && catch_path(line) != NULL)
+	else if (code == WEST && catch_path(line) != NULL)
 		data->WE->path = strdup_without_n(catch_path(line));
-	else if (code == SO && catch_path(line) != NULL)
+	else if (code == SOUTH && catch_path(line) != NULL)
 		data->SO->path = strdup_without_n(catch_path(line));
-	else if (code == F)
+	else if (code == Fnum)
 		data->F_strings = ft_split(line, ',');
-	else if (code == C)
+	else if (code == Cnum)
 		data->C_strings = ft_split(line, ',');
 }
 

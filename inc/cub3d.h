@@ -6,7 +6,7 @@
 /*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:11:07 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/18 18:11:08 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/19 11:53:36 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,14 @@
 # define FOV 60               // field of view
 # define ROTATION_SPEED 0.045 // rotation speed
 # define PLAYER_SPEED 4       // player speed
-# define WIN_WIDTH 1920
 # define WIN_HEIGHT 1080
+# define WIN_WIDTH 1920
+# define NORTH 1
+# define SOUTH 2
+# define EAST 3
+# define WEST 4
+# define Cnum 5
+# define Fnum 6
 
 # define RST "\033[0;39m"
 # define GRAY "\033[0;90m"
@@ -44,16 +50,6 @@
 # define MAGENTA "\033[0;95m"
 # define CYAN "\033[0;96m"
 # define WHITE "\033[0;97m"
-
-enum			e_textures
-{
-	NO,
-	EA,
-	SO,
-	WE,
-	F,
-	C
-};
 
 typedef struct s_coord
 {
@@ -164,6 +160,7 @@ typedef struct s_data
 	int			map_start;
 	int			player_x;
 	int			player_y;
+	int			player_found;
 	int			next_x;
 	int			next_y;
 	char		**map;
@@ -230,5 +227,10 @@ void			free_textures(t_data *data);
 void			free_tab(char **tab);
 int				free_all(t_data *data, int exit_status);
 void			debug(t_data *data);
+
+// TEST
+
+int				validate_player(t_data *data, char **map, int i, int j);
+void			set_camera(t_data *data, double d_y, double p_x, double p_y);
 
 #endif

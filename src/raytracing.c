@@ -6,7 +6,7 @@
 /*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 13:06:47 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/18 18:11:19 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/19 11:14:03 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 // et retourne sa valeur absolue en type double.
 static void	init_values(t_ray *ray, t_player *player)
 {
-	ray->cam_x = (2 * ray->curr_x) / 1920 - 1;
+	ray->cam_x = (2 * ray->curr_x) / WIN_WIDTH - 1;
 	ray->ray_dir_x = player->dir_vect.x + player->cam_plane_vect.x * ray->cam_x;
 	ray->ray_dir_y = player->dir_vect.y + player->cam_plane_vect.y * ray->cam_x;
-	ray->map_x = player->px;
-	ray->map_y = player->py;
+	ray->map_x = (int)player->px;
+	ray->map_y = (int)player->py;
 	ray->delta_dist_x = fabs(1 / ray->ray_dir_x);
 	ray->delta_dist_x = fabs(1 / ray->ray_dir_y);
 	ray->hit = 0;
@@ -58,18 +58,18 @@ static void	get_next_wall(t_ray *ray)
 		ray->side_dist_x += ray->delta_dist_x;
 		ray->map_x += ray->step_x;
 		if (ray->step_x == -1)
-			ray->side = EA;
+			ray->side = EAST;
 		else
-			ray->side = WE;
+			ray->side = WEST;
 	}
 	else
 	{
 		ray->side_dist_y += ray->delta_dist_y;
 		ray->map_y += ray->step_y;
 		if (ray->step_y == -1)
-			ray->side = SO;
+			ray->side = SOUTH;
 		else
-			ray->side = NO;
+			ray->side = NORTH;
 	}
 }
 static void	algo_dda(t_data *data, t_ray *ray)

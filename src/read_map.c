@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 18:51:04 by jchen             #+#    #+#             */
-/*   Updated: 2025/01/18 17:26:24 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/19 12:06:13 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ char	**malloc_map(char *map, t_data *data)
 		map_array[i] = get_next_line(fd);
 		if (!map_array[i])
 			return (free_tab(map_array), close(fd), NULL);
+		printf("MAP = %s", map_array[i]);
 	}
 	map_array[i] = NULL;
 	return (close(fd), map_array);

@@ -6,7 +6,7 @@
 /*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 13:52:01 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/18 18:55:24 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/19 11:11:56 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,18 @@ static void	paint_texture_line(t_data *data, t_ray *ray, t_line *line,
 	int			tex_x;
 
 	img = data->NO;
-	if (ray->side == EA)
+	if (ray->side == EAST)
 		img = data->EA;
-	else if (ray->side == WE)
+	else if (ray->side == WEST)
 		img = data->WE;
-	else if (ray->side == NO)
+	else if (ray->side == NORTH)
 		img = data->NO;
-	else if (ray->side == SO)
+	else if (ray->side == SOUTH)
 		img = data->SO;
 	tex_x = (int)(wall_x * (double)img->width);
-	if ((ray->side == WE || ray->side == EA) && ray->ray_dir_x > 0)
+	if ((ray->side == WEST || ray->side == EAST) && ray->ray_dir_x > 0)
 		tex_x = img->width - tex_x - 1;
-	else if ((ray->side == NO || ray->side == SO) && ray->ray_dir_y < 0)
+	else if ((ray->side == NORTH || ray->side == SOUTH) && ray->ray_dir_y < 0)
 		tex_x = img->width - tex_x - 1;
 	line->y0 = ray->draw_start;
 	line->y1 = ray->draw_end;
@@ -59,10 +59,10 @@ void	draw_textures(t_data *data, t_ray *ray, t_player *player)
 
 	line = malloc(sizeof(t_line));
 	ft_bzero(line, sizeof(t_line));
-	if (ray->side == WE || ray->side == EA)
+	if (ray->side == WEST || ray->side == EAST)
 		wall_x = player->py + ray->prep_wall_dist * ray->ray_dir_y;
 	else
-		wall_x = player->py + ray->prep_wall_dist * ray->ray_dir_x;
+		wall_x = player->px + ray->prep_wall_dist * ray->ray_dir_x;
 	wall_x -= floor(wall_x);
 	line->x = ray->curr_x;
 	if (data->map[ray->map_y][ray->map_x] == '1')
@@ -70,7 +70,7 @@ void	draw_textures(t_data *data, t_ray *ray, t_player *player)
 	line->y0 = 0;
 	line->y1 = ray->draw_start;
 	paint_line(data, line, data->C);
-	line->y0 = 1080;
+	line->y0 = WIN_HEIGHT;
 	line->y1 = ray->draw_end;
 	paint_line(data, line, data->F);
 	free(line);
@@ -84,7 +84,7 @@ int	render(void *arg)
 	data = (t_data *)arg;
 	ray = malloc(sizeof(t_ray));
 	ft_bzero(ray, sizeof(t_ray));
-	while (ray->curr_x < 1920)
+	while (ray->curr_x < WIN_WIDTH)
 		raytracing(data, ray);
 	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win,
 		data->mlx_img->img_ptr, 0, 0);

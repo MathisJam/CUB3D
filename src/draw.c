@@ -6,7 +6,7 @@
 /*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 16:21:28 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/18 18:51:55 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/19 12:15:09 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static void	texture_on_img(t_data *data, t_ray *ray, t_line *line,
 {
 	int	scale;
 
-	scale = line->y * texture->line_length - (1080 * data->player->cam_height)
-		* texture->line_length / 2 + ray->line_height * texture->line_length
-		/ 2;
+	scale = line->y * texture->line_length - (WIN_HEIGHT
+			* data->player->cam_height) * texture->line_length / 2
+		+ ray->line_height * texture->line_length / 2;
 	line->tex_y = ((scale * texture->height) / ray->line_height)
 		/ texture->line_length;
 	data->mlx_img->data[line->y * data->mlx_img->line_length + line->x
@@ -41,9 +41,9 @@ static void	pixel_on_img(int *rgb, int x, int y, t_texture *img)
 	int	g;
 	int	b;
 
-	r = rgb[1]; // (rgb[1] >> 16) & 0xFF;
-	g = rgb[2]; // (rgb[2] >> 8) & 0xFF;
-	b = rgb[3]; // rgb[3] & 0xFF;
+	r = rgb[0];
+	g = rgb[1];
+	b = rgb[2];
 	img->data[y * img->line_length + x * img->bits_per_pixel / 8] = b;
 	img->data[y * img->line_length + x * img->bits_per_pixel / 8 + 1] = g;
 	img->data[y * img->line_length + x * img->bits_per_pixel / 8 + 2] = r;
@@ -66,13 +66,9 @@ void	draw_texture_image(t_data *data, t_ray *ray, t_line *line,
 	}
 	if (line->y >= 0)
 	{
-		printf("%d\n", y_max);
 		line->y--;
 		while (++line->y < y_max)
-		{
-			printf("caca\n");
 			texture_on_img(data, ray, line, img);
-		}
 	}
 }
 

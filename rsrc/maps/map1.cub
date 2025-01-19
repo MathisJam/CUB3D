@@ -1,9 +1,10 @@
-NO	./rsrc/textures/distributeur.xpm
-SO	./rsrc/textures/vide.xpm
-F	220,100,4
-WE	./rsrc/textures/toilettes.xpm
 EA	./rsrc/textures/tableau42.xpm
-C	225,30,15
+NO	./rsrc/textures/wall.xpm
+SO	./rsrc/textures/wall.xpm
+WE	./rsrc/textures/wall.xpm
+C	181,222,222
+F	57,87,74
+
 
         1111111111111111111111111
         1000000000110000000000001

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:36:23 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/18 17:28:22 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/19 11:56:10 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,10 @@ static int	close_check(t_data *data, char **map)
 	if (check_line(map[0]))
 		return (1);
 	if (check_line(map[(data->row_nbr) - 1]))
-		return (1);
+	{
+		debug(data);
+		return (printf("%d", data->row_nbr), 1);
+	}
 	while (++i < (data->row_nbr))
 	{
 		j = 0;
@@ -92,9 +95,42 @@ static int	close_check(t_data *data, char **map)
 			len--;
 		if (map[i][len] != '1')
 			return (1);
+		while (map[i][j++])
+			validate_player(data, data->map, i, j);
 	}
 	if (i < 3)
 		err_msg("Map not closed", data, true);
+	return (0);
+}
+
+int	validate_player(t_data *data, char **map, int i, int j)
+{
+	// printf("%d\n", i);
+	// printf("%d\n", j);
+	if (map[i][j] == 'N')
+	{
+		data->player->dir_vect.x = 0.00;
+		set_camera(data, -1.00, 0.66, 0.00);
+	}
+	else if (map[i][j] == 'S')
+	{
+		data->player->dir_vect.x = 0.00;
+		set_camera(data, 1.00, -0.66, 0.00);
+	}
+	else if (map[i][j] == 'E')
+	{
+		data->player->dir_vect.x = 1.00;
+		set_camera(data, 0.00, 0.00, 0.66);
+	}
+	else if (map[i][j] == 'W')
+	{
+		data->player->dir_vect.x = -1;
+		set_camera(data, 0.00, 0.00, -0.66);
+	}
+	else
+		return (1);
+	data->player->px = (double)j + 0.5;
+	data->player->py = (double)i + 0.5;
 	return (0);
 }
 
