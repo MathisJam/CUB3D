@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 13:52:01 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/19 12:52:01 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/19 13:16:58 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,15 @@ int	render(void *arg)
 	t_ray	*ray;
 
 	data = (t_data *)arg;
-	ray = malloc(sizeof(t_ray));
-	ft_bzero(ray, sizeof(t_ray));
+	ray = ft_calloc(1, sizeof(t_ray));
+	if (!ray)
+		return (1);
 	while (ray->curr_x < WIN_WIDTH)
 		raytracing(data, ray);
 	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win,
 		data->mlx_img->img_ptr, 0, 0);
 	free(ray);
-	// si on veut mettre event handler
+	// si on veut mettre event handler :
+	// event_executor(data);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:11:07 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/19 12:32:18 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/19 13:10:11 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,23 +131,6 @@ typedef struct s_player
 // 	int	move_bwd;
 // }				t_control;
 
-// typedef struct s_old_textures
-// {
-// 	void		*NO;
-// 	void		*EA;
-// 	void		*SO;
-// 	void		*WE;
-// 	char		*NO_path;
-// 	char		*WE_path;
-// 	char		*EA_path;
-// 	char		*SO_path;
-// 	char		**F_strings;
-// 	char		**C_strings;
-// 	int			*F;
-// 	int			*C;
-// 	int			img_size;
-// }				t_old_textures;
-
 typedef struct s_data
 {
 	// MLX
@@ -209,6 +192,7 @@ void			display_map(t_data *data);
 // SAFE FUNCTIONS
 int				safe_open_fd(char *file, int flag, t_data *data);
 void			*malloc_fd(size_t bytes, t_data *data, int *fd);
+void			*safe_calloc(size_t nmemb, size_t bytes, t_data *data);
 
 // UTILS
 int				check_extension(const char *big, const char *little,
@@ -222,7 +206,6 @@ int				handle_input(int keysym, t_data *data);
 
 // FREE
 void			err_msg(char *str, t_data *data, bool to_free);
-void			free_textures(t_data *data);
 void			free_tab(char **tab);
 int				free_all(t_data *data, int exit_status);
 void			debug(t_data *data);
