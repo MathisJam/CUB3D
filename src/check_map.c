@@ -6,7 +6,7 @@
 /*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:36:23 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/19 15:29:30 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/19 17:41:02 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static int	close_check(t_data *data, char **map)
 	if (check_line(map[(data->row_nbr) - 1]))
 	{
 		debug(data);
-		return (printf("%d", data->row_nbr), 1);
+		return (1);
 	}
 	while (++i < (data->row_nbr))
 	{
