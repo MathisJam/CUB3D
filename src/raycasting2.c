@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raytracing2.c                                      :+:      :+:    :+:   */
+/*   raycasting2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 15:52:44 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/19 15:52:01 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/19 17:01:34 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,13 @@ Fonction qui determine les distances et mets draw start et draw end a jour
 */
 void	prep_height(t_ray *ray, t_player *player)
 {
+	// printf("%d\n", ray->side);
 	if (ray->side == WEST || ray->side == EAST)
+	{
 		ray->prep_wall_dist = ((double)ray->map_x - player->px + (1
 					- ray->step_x) / 2) / ray->ray_dir_x;
+		printf("ray = %f\n", ray->prep_wall_dist);
+	}
 	else
 		ray->prep_wall_dist = ((double)ray->map_y - player->py + (1
 					- ray->step_y) / 2) / ray->ray_dir_y;

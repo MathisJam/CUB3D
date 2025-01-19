@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raytracing.c                                       :+:      :+:    :+:   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 13:06:47 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/19 16:00:36 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/19 17:17:19 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static void	init_values(t_ray *ray, t_player *player)
 	ray->cam_x = (2 * ray->curr_x) / (double)WIN_WIDTH - 1;
 	ray->ray_dir_x = player->dir_vect.x + player->cam_plane_vect.x * ray->cam_x;
 	ray->ray_dir_y = player->dir_vect.y + player->cam_plane_vect.y * ray->cam_x;
+	printf("Dir_vect x = %f\n Cam vect x = %f\n cam_x = %f\n",
+		player->dir_vect.y, player->cam_plane_vect.y, ray->cam_x);
 	ray->map_x = (int)player->px;
 	ray->map_y = (int)player->py;
 	ray->delta_dist_x = fabs(1 / ray->ray_dir_x);
@@ -53,6 +55,7 @@ static void	get_next_wall(t_ray *ray)
 {
 	if (ray->side_dist_x < ray->side_dist_y)
 	{
+		printf("ok\n");
 		ray->side_dist_x += ray->delta_dist_x;
 		ray->map_x += ray->step_x;
 		if (ray->step_x == -1)
@@ -79,7 +82,7 @@ static void	algo_dda(t_data *data, t_ray *ray)
 			ray->hit = 1;
 	}
 }
-void	raytracing(t_data *data, t_ray *ray)
+void	raycasting(t_data *data, t_ray *ray)
 {
 	t_player	*player;
 

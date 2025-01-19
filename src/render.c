@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 13:52:01 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/19 15:54:21 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/19 16:36:22 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,12 @@
 // 	int	width;
 // 	int	height;
 
-// 	img->img_ptr = mlx_xpm_file_to_image(data->mlx_ptr, path, &width, &height);
-// 	if (!img->img_ptr)
-// 		err_msg("mlx_xpm_file_to_image() failure\n", data, true);
-// 	img->width = width;
-// 	img->height = height;
-// 	img->data = mlx_get_data_addr(img->img_ptr, &img->bits_per_pixel,
-// 			&img->line_length, &img->endian);
+// 	img->img_ptr = mlx_xpm_file_to_image(data->mlx_ptr, path, &width,
+// &height); 	if (!img->img_ptr) 		err_msg("mlx_xpm_file_to_image() failure\n",
+// data, true); 	img->width = width; 	img->height = height; 	img->data =
+// mlx_get_data_addr(img->img_ptr, &img->bits_per_pixel,
+// &img->line_length,
+// &img->endian);
 // }
 
 static void	paint_texture_line(t_data *data, t_ray *ray, t_line *line,
@@ -86,7 +85,7 @@ int	render(void *arg)
 	if (!ray)
 		return (1);
 	while (ray->curr_x < WIN_WIDTH)
-		raytracing(data, ray);
+		raycasting(data, ray);
 	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win,
 		data->mlx_img->img_ptr, 0, 0);
 	free(ray);

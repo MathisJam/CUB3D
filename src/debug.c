@@ -6,7 +6,7 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:12:15 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/18 17:32:49 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/19 16:26:21 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ void	debug(t_data *data)
 		}
 		printf("\n");
 	}
-	printf("Player x = %d\nPlayer y = %d\n", data->player_x, data->player_y);
+	printf("Player x = %f\nPlayer y = %f\n", data->player->px,
+		data->player->py);
 	printf("NO = %s\n", data->NO->path);
 	printf("SO = %s\n", data->SO->path);
 	printf("WE = %s\n", data->WE->path);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:11:07 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/19 15:37:03 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/19 16:34:24 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,9 @@
 # include <string.h>
 # include <unistd.h>
 
-# define PI 3.1415926535  // 180 degres (a gauche)
-# define P0 6.283185307   // PI*2 -> 0 ou 360 degres (a droite)
-# define P2 1.57079632679 // PI/2 -> 90 degres (en haut)
-# define P3 4.71238898038 // 3*PI/2 -> 270 degres (en bas)
-
-# define FOV 60               // field of view
-# define ROTATION_SPEED 0.045 // rotation speed
-# define PLAYER_SPEED 4       // player speed
+# define FOV 60
+# define ROTATION_SPEED 0.025
+# define PLAYER_SPEED 0.025
 # define WIN_HEIGHT 400
 # define WIN_WIDTH 800
 # define NORTH 1
@@ -40,16 +35,6 @@
 # define WEST 4
 # define Cnum 5
 # define Fnum 6
-
-# define RST "\033[0;39m"
-# define GRAY "\033[0;90m"
-# define RED "\033[5;91m"
-# define GREEN "\033[0;92m"
-# define YELLOW "\033[0;93m"
-# define BLUE "\033[0;94m"
-# define MAGENTA "\033[0;95m"
-# define CYAN "\033[0;96m"
-# define WHITE "\033[0;97m"
 
 typedef struct s_coord
 {
@@ -129,16 +114,13 @@ typedef struct s_data
 	// MLX
 	void		*mlx_ptr;
 	void		*mlx_win;
+	t_texture	*mlx_img;
 
 	// MAP
 	int			row_nbr;
 	int			column_nbr;
 	int			map_start;
-	int			player_x;
-	int			player_y;
 	int			player_found;
-	int			next_x;
-	int			next_y;
 	char		**map;
 
 	// FLOOR & CEILING
@@ -148,14 +130,12 @@ typedef struct s_data
 	int			*C;
 
 	// AUTRES
-	t_texture	*mlx_img;
 	t_texture	*NO;
 	t_texture	*SO;
 	t_texture	*WE;
 	t_texture	*EA;
 	t_control	*control;
 	t_player	*player;
-	t_ray		*ray;
 }				t_data;
 
 // INIT
@@ -163,9 +143,9 @@ void			init_data(t_data *data);
 void			init_mlx(t_data *data);
 void			init_textures(t_data *data);
 
-// RENDER AFFICHAGE ET CO
+// RENDER AFFICHAGE & CO
 int				render(void *arg);
-void			raytracing(t_data *data, t_ray *ray);
+void			raycasting(t_data *data, t_ray *ray);
 void			prep_height(t_ray *ray, t_player *player);
 void			draw_texture_image(t_data *data, t_ray *ray, t_line *line,
 					t_texture *img);
@@ -203,7 +183,6 @@ int				free_all(t_data *data, int exit_status);
 void			debug(t_data *data);
 
 // TEST
-
 int				validate_player(t_data *data, char **map, int i, int j);
 void			set_camera(t_data *data, double d_y, double p_x, double p_y);
 int				handle_key_release(int key, t_data *data);
