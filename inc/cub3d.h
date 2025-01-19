@@ -6,7 +6,7 @@
 /*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:11:07 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/19 11:53:36 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/19 12:32:18 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,7 +185,6 @@ typedef struct s_data
 
 // INIT
 void			init_data(t_data *data);
-void			set_player_pos(t_data *data);
 void			init_mlx(t_data *data);
 void			init_textures(t_data *data);
 

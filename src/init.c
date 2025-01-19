@@ -6,32 +6,11 @@
 /*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:03:57 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/18 18:02:25 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/19 12:32:00 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-
-void	set_player_pos(t_data *data)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	while (data->map[++i])
-	{
-		j = -1;
-		while (data->map[i][++j])
-		{
-			if (data->map[i][j] == 'N' || data->map[i][j] == 'S'
-				|| data->map[i][j] == 'E' || data->map[i][j] == 'W')
-			{
-				data->player_x = j;
-				data->player_y = i;
-			}
-		}
-	}
-}
 
 void	init_player(t_data *data)
 {
@@ -42,8 +21,8 @@ void	init_player(t_data *data)
 	data->player->dir_vect.y = 0;
 	data->player->cam_plane_vect.x = 0;
 	data->player->cam_plane_vect.y = 0;
-	data->player->px = 5;
-	data->player->py = 5;
+	data->player->px = 0;
+	data->player->py = 0;
 	data->player->sens = 0.1;
 	data->player->speed = 0.05;
 	data->player->cam_height = 1.0;
@@ -85,31 +64,6 @@ void	init_data(t_data *data)
 	data->C_strings = NULL;
 	init_player(data);
 }
-
-// void	init_data(t_data *data)
-// {
-// 	int	i;
-
-// 	i = -1;
-// 	data->map = NULL;
-// 	data->row_nbr = 0;
-// 	data->column_nbr = 0;
-// 	data->map_start = 0;
-// 	data->player_x = 0;
-// 	data->player_y = 0;
-// 	data->textures = ft_calloc(1, sizeof(t_textures));
-// 	data->textures->img_size = 64;
-// 	data->textures->NO_path = NULL;
-// 	data->textures->EA_path = NULL;
-// 	data->textures->WE_path = NULL;
-// 	data->textures->SO_path = NULL;
-// 	data->textures->F = 0;
-// 	data->textures->C = 0;
-// 	data->textures->F_strings = 0;
-// 	data->textures->C_strings = 0;
-// 	init_player(data);
-// 	init_img(data);
-// }
 
 void	init_mlx(t_data *data)
 {

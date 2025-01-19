@@ -6,7 +6,7 @@
 /*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:22:49 by jchen             #+#    #+#             */
-/*   Updated: 2025/01/19 11:49:14 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/19 12:32:14 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static void	init_map(t_data *data, char **argv)
 	check_map(data);
 	get_map_info(data, argv[1]);
 	get_floor_ceiling(data);
-	set_player_pos(data);
 }
 
 int	main(int argc, char **argv)
@@ -36,7 +35,7 @@ int	main(int argc, char **argv)
 	debug(data);
 	init_mlx(data);
 	init_textures(data);
-	mlx_hook(data->mlx_win, 2, 0, handle_input, data);
+	// mlx_hook(data->mlx_win, 2, 0, handle_input, data);
 	mlx_hook(data->mlx_win, 17, 1, free_all, data);
 	mlx_loop_hook(data->mlx_ptr, render, data);
 	mlx_loop(data->mlx_ptr);
