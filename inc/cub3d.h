@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:11:07 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/19 13:10:11 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/19 15:37:03 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@
 # define FOV 60               // field of view
 # define ROTATION_SPEED 0.045 // rotation speed
 # define PLAYER_SPEED 4       // player speed
-# define WIN_HEIGHT 1080
-# define WIN_WIDTH 1920
+# define WIN_HEIGHT 400
+# define WIN_WIDTH 800
 # define NORTH 1
 # define SOUTH 2
 # define EAST 3
@@ -112,24 +112,17 @@ typedef struct s_player
 	double		sens;
 }				t_player;
 
-// typedef struct s_game
-// {
-// 	char			**map;
-// 	int				player_found;
-// 	t_player		*player;
-// }				t_game;
-
-// typedef struct s_control
-// {
-// 	int	look_left;
-// 	int	look_right;
-// 	int	look_up;
-// 	int	look_down;
-// 	int	move_left;
-// 	int	move_right;
-// 	int	move_fwd;
-// 	int	move_bwd;
-// }				t_control;
+typedef struct s_control
+{
+	int			look_left;
+	int			look_right;
+	int			look_up;
+	int			look_down;
+	int			move_left;
+	int			move_right;
+	int			move_fwd;
+	int			move_bwd;
+}				t_control;
 
 typedef struct s_data
 {
@@ -160,8 +153,7 @@ typedef struct s_data
 	t_texture	*SO;
 	t_texture	*WE;
 	t_texture	*EA;
-	// t_game		*game;
-	// t_control	*control;
+	t_control	*control;
 	t_player	*player;
 	t_ray		*ray;
 }				t_data;
@@ -214,5 +206,15 @@ void			debug(t_data *data);
 
 int				validate_player(t_data *data, char **map, int i, int j);
 void			set_camera(t_data *data, double d_y, double p_x, double p_y);
+int				handle_key_release(int key, t_data *data);
+int				handle_key_press(int key, t_data *data);
+void			event_executor(t_data *data);
+void			turn_left(t_data *data);
+void			turn_right(t_data *data);
+void			move_forward(t_data *data);
+void			move_right(t_data *data);
+void			move_left(t_data *data);
+void			move_backward(t_data *data);
+void			init_controls(t_data *data);
 
 #endif

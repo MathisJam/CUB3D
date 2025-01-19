@@ -6,7 +6,7 @@
 /*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:36:23 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/19 11:56:10 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/19 15:29:30 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,6 @@ static int	close_check(t_data *data, char **map)
 
 int	validate_player(t_data *data, char **map, int i, int j)
 {
-	// printf("%d\n", i);
-	// printf("%d\n", j);
 	if (map[i][j] == 'N')
 	{
 		data->player->dir_vect.x = 0.00;
