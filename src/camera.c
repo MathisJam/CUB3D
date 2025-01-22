@@ -3,14 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 11:17:40 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/22 18:39:23 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/22 19:39:17 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
+
+int	validate_player(t_data *data, char **map, int i, int j)
+{
+	if (map[i][j] == 'N')
+	{
+		data->player->dir_vect.x = 0.00;
+		set_camera(data, -1.00, 0.66, 0.00);
+	}
+	else if (map[i][j] == 'S')
+	{
+		data->player->dir_vect.x = 0.00;
+		set_camera(data, 1.00, -0.66, 0.00);
+	}
+	else if (map[i][j] == 'E')
+	{
+		data->player->dir_vect.x = 1.00;
+		set_camera(data, 0.00, 0.00, 0.66);
+	}
+	else if (map[i][j] == 'W')
+	{
+		data->player->dir_vect.x = -1;
+		set_camera(data, 0.00, 0.00, -0.66);
+	}
+	else
+		return (1);
+	data->player->px = (double)j + 0.5;
+	data->player->py = (double)i + 0.5;
+	return (0);
+}
 
 void	set_camera(t_data *data, double d_y, double p_x, double p_y)
 {

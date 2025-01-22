@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:36:23 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/22 16:14:30 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/22 19:39:03 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,7 @@ static int	close_check(t_data *data, char **map)
 	int	len;
 
 	i = -1;
-	if (check_line(map[0]))
-		return (1);
-	if (check_line(map[(data->row_nbr) - 1]))
+	if (check_line(map[0]) || check_line(map[(data->row_nbr) - 1]))
 		return (1);
 	while (++i < (data->row_nbr))
 	{
@@ -97,35 +95,6 @@ static int	close_check(t_data *data, char **map)
 	}
 	if (i < 3)
 		err_msg("Map not closed", data, true);
-	return (0);
-}
-
-int	validate_player(t_data *data, char **map, int i, int j)
-{
-	if (map[i][j] == 'N')
-	{
-		data->player->dir_vect.x = 0.00;
-		set_camera(data, -1.00, 0.66, 0.00);
-	}
-	else if (map[i][j] == 'S')
-	{
-		data->player->dir_vect.x = 0.00;
-		set_camera(data, 1.00, -0.66, 0.00);
-	}
-	else if (map[i][j] == 'E')
-	{
-		data->player->dir_vect.x = 1.00;
-		set_camera(data, 0.00, 0.00, 0.66);
-	}
-	else if (map[i][j] == 'W')
-	{
-		data->player->dir_vect.x = -1;
-		set_camera(data, 0.00, 0.00, -0.66);
-	}
-	else
-		return (1);
-	data->player->px = (double)j + 0.5;
-	data->player->py = (double)i + 0.5;
 	return (0);
 }
 

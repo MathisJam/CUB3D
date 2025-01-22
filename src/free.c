@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:44:29 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/22 19:32:17 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/22 19:38:25 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,17 @@ static void	free_t_texture(t_data *data, t_texture *texture)
 	}
 }
 
+static void	free_all2(t_data *data)
+{
+	if (data->ceiling)
+		free(data->ceiling);
+	if (data->floor)
+		free(data->floor);
+	free_tab(data->map);
+	free_tab(data->f_strings);
+	free_tab(data->c_strings);
+}
+
 int	free_all(t_data *data, int exit_status)
 {
 	if (data == NULL)
@@ -57,13 +68,7 @@ int	free_all(t_data *data, int exit_status)
 		mlx_destroy_display(data->mlx_ptr);
 		free(data->mlx_ptr);
 	}
-	if (data->ceiling)
-		free(data->ceiling);
-	if (data->floor)
-		free(data->floor);
-	free_tab(data->map);
-	free_tab(data->f_strings);
-	free_tab(data->c_strings);
+	free_all2(data);
 	if (data)
 		free(data);
 	exit(exit_status);

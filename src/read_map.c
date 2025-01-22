@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 18:51:04 by jchen             #+#    #+#             */
-/*   Updated: 2025/01/22 17:13:49 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/22 19:35:00 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	is_map_start(char *str)
 	i = 0;
 	if (!str || ft_strlen(str) == 1)
 		return (false);
-	while (str && (str[i] == '1' || str[i] == ' '))
+	while (str && (str[i] == '1' || str[i] == ' ' || str[i] == '\t'))
 		i++;
 	if (str[i] == '\n' && i > 1)
 		return (true);
@@ -42,7 +42,7 @@ static int	map_line_nbr(char *str, t_data *data)
 	{
 		i++;
 		j = 0;
-		while (line && (line[j] == '1' || line[j] == ' '))
+		while (line && (line[j] == '1' || line[j] == ' ' || line[j] == '\t'))
 			j++;
 		if (j > 1 && (line[j] == '\n'))
 		{
@@ -70,7 +70,7 @@ static void	skip_not_map_lines(int fd, int start)
 			|| temp[j] == 32 || temp[j] == 'S' || temp[j] == 'W'
 			|| temp[j] == 'E')
 		{
-			if (temp[j + 1] == '\n' || temp[j + 1] == '\0')
+			if (temp[j + 1] && (temp[j + 1] == '\n' || temp[j + 1] == '\0'))
 				i--;
 			j++;
 		}
