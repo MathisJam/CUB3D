@@ -3,27 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 13:52:01 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/22 14:17:15 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/22 19:25:30 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-
-// static void	load_texture(t_data *data, t_texture *img, char *path)
-// {
-// 	int	width;
-// 	int	height;
-
-// 	img->img_ptr = mlx_xpm_file_to_image(data->mlx_ptr, path, &width,
-// &height); 	if (!img->img_ptr) 		err_msg("mlx_xpm_file_to_image()
-// failure\n", data, true); 	img->width = width; 	img->height = height;
-// img->data = mlx_get_data_addr(img->img_ptr, &img->bits_per_pixel,
-// &img->line_length,
-// &img->endian);
-// }
 
 static void	paint_texture_line(t_data *data, t_ray *ray, t_line *line,
 		double wall_x)

@@ -6,7 +6,7 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:11:07 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/22 18:37:23 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/22 19:23:00 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,11 @@
 # include <string.h>
 # include <unistd.h>
 
-# define BONUS 0
-# define FOV 60
 # define ROTATION_SPEED 0.075
 # define PLAYER_SPEED 0.075
-# define WIN_HEIGHT 1080
 # define WIN_WIDTH 1920
+# define WIN_HEIGHT 1080
+
 # define NORTH 1
 # define SOUTH 2
 # define EAST 3
@@ -140,7 +139,6 @@ typedef struct s_data
 void			init_data(t_data *data);
 void			init_mlx(t_data *data);
 void			init_textures(t_data *data);
-void			init_controls(t_data *data);
 
 // MAP
 void			load_map(t_data *data, char *map);
@@ -189,7 +187,6 @@ bool			is_space(char c);
 
 // FREE
 void			err_msg(char *str, t_data *data, bool to_free);
-void			free_tab(char **tab);
 int				free_all(t_data *data, int exit_status);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:03:57 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/22 12:53:48 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/22 19:19:04 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,6 @@ static void	init_player(t_data *data)
 	data->player->sens = ROTATION_SPEED;
 }
 
-void	init_controls(t_data *data)
-{
-	data->control = malloc(sizeof(t_control));
-	if (!data->control)
-		err_msg("malloc() failure in data->control\n", data, 1);
-	data->control->look_left = 0;
-	data->control->look_right = 0;
-	data->control->look_up = 0;
-	data->control->look_down = 0;
-	data->control->move_left = 0;
-	data->control->move_right = 0;
-	data->control->move_fwd = 0;
-	data->control->move_bwd = 0;
-}
-
 void	init_data(t_data *data)
 {
 	data->mlx_img = safe_calloc(1, sizeof(t_texture), data);
@@ -42,6 +27,7 @@ void	init_data(t_data *data)
 	data->so = safe_calloc(1, sizeof(t_texture), data);
 	data->we = safe_calloc(1, sizeof(t_texture), data);
 	data->ea = safe_calloc(1, sizeof(t_texture), data);
+	data->control = safe_calloc(1, sizeof(t_control), data);
 	init_player(data);
 }
 

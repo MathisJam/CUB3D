@@ -6,7 +6,7 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:22:49 by jchen             #+#    #+#             */
-/*   Updated: 2025/01/22 17:14:42 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/22 19:19:10 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@
 static void	global_init(t_data *data, char **argv)
 {
 	init_data(data);
-	init_controls(data);
 	load_map(data, argv[1]);
 	// debug(data);
 	check_map(data);
