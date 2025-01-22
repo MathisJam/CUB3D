@@ -6,7 +6,7 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:11:07 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/22 15:36:17 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/22 18:37:23 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,8 +162,8 @@ void			draw_textures(t_data *data, t_ray *ray, t_player *player);
 
 // CAMERA
 void			set_camera(t_data *data, double d_y, double p_x, double p_y);
-void			turn_left(t_data *data);
-void			turn_right(t_data *data);
+void			turn_left(t_data *data, bool mouse);
+void			turn_right(t_data *data, bool mouse);
 
 // INPUTS
 int				handle_key_release(int key, t_data *data);

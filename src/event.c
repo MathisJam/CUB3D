@@ -6,7 +6,7 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 15:06:03 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/22 15:36:56 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/22 18:37:47 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ int	handle_mouse_move(int x, int y, t_data *data)
 {
 	(void)y;
 	if (x < data->control->last_mouse_pos)
-		turn_left(data);
+		turn_left(data, true);
 	else if (x > data->control->last_mouse_pos)
-		turn_right(data);
+		turn_right(data, true);
 	data->control->last_mouse_pos = x;
 	return (0);
 }
@@ -65,9 +65,9 @@ int	handle_key_press(int key, t_data *data)
 void	event_executor(t_data *data)
 {
 	if (data->control->look_left)
-		turn_left(data);
+		turn_left(data, false);
 	if (data->control->look_right)
-		turn_right(data);
+		turn_right(data, false);
 	if (data->control->move_fwd)
 		move_forward(data);
 	if (data->control->move_bwd)
