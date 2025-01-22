@@ -6,18 +6,76 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:22:49 by jchen             #+#    #+#             */
-/*   Updated: 2025/01/19 16:10:16 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/22 14:31:55 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-static void	init_map(t_data *data, char **argv)
+// static void	display_char_array(char **array)
+// {
+// 	int	i;
+
+// 	if (!array)
+// 	{
+// 		printf("Le tableau est NULL.\n");
+// 		return ;
+// 	}
+// 	i = 0;
+// 	while (array[i])
+// 	{
+// 		printf("Element %d: %s", i, array[i]);
+// 		i++;
+// 	}
+// }
+
+// static void	debug(t_data *data)
+// {
+// 	int	count;
+
+// 	printf("\nTABLEAU :\n");
+// 	display_char_array(data->map);
+// 	printf("\n");
+// 	printf("row_nbr : %d\n", data->row_nbr);
+// 	count = count_strings(data->f_strings);
+// 	if (data->floor)
+// 	{
+// 		printf("Tableau d'entiers F : ");
+// 		for (int i = 0; i < count; i++)
+// 		{
+// 			printf("%d ", data->floor[i]);
+// 		}
+// 		printf("\n");
+// 	}
+// 	count = count_strings(data->c_strings);
+// 	if (data->ceiling)
+// 	{
+// 		printf("Tableau d'entiers C : ");
+// 		for (int i = 0; i < count; i++)
+// 		{
+// 			printf("%d ", data->ceiling[i]);
+// 		}
+// 		printf("\n");
+// 	}
+// 	printf("Player x = %f\nPlayer y = %f\n", data->player->px,
+// 		data->player->py);
+// 	printf("no = %s\n", data->no->path);
+// 	printf("so = %s\n", data->so->path);
+// 	printf("we = %s\n", data->we->path);
+// 	printf("ea = %s\n", data->ea->path);
+// }
+
+static void	global_init(t_data *data, char **argv)
 {
+	init_data(data);
+	init_controls(data);
 	load_map(data, argv[1]);
 	check_map(data);
 	get_map_info(data, argv[1]);
 	get_floor_ceiling(data);
+	init_mlx(data);
+	// debug(data);
+	init_textures(data);
 }
 
 int	main(int argc, char **argv)
@@ -29,12 +87,7 @@ int	main(int argc, char **argv)
 		ft_putstr_fd("Error\nData calloc failed\n", 2);
 	if (argc != 2 || check_extension(argv[1], ".cub", ft_strlen(argv[1])) == 1)
 		err_msg("please enter : ./cub3D [map.cub]\n", data, true);
-	init_data(data);
-	init_controls(data);
-	init_map(data, argv);
-	init_mlx(data);
-	// debug(data);
-	init_textures(data);
+	global_init(data, argv);
 	mlx_hook(data->mlx_win, 17, 0, free_all, data);
 	mlx_hook(data->mlx_win, 2, 1L << 0, handle_key_press, data);
 	mlx_hook(data->mlx_win, 3, 1L << 1, handle_key_release, data);

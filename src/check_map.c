@@ -6,7 +6,7 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:36:23 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/22 12:52:10 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/22 14:25:58 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,7 @@ static int	close_check(t_data *data, char **map)
 	if (check_line(map[0]))
 		return (1);
 	if (check_line(map[(data->row_nbr) - 1]))
-	{
-		debug(data);
 		return (1);
-	}
 	while (++i < (data->row_nbr))
 	{
 		j = 0;

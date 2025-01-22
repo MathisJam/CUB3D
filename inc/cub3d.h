@@ -6,7 +6,7 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:11:07 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/22 12:54:12 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/22 14:25:24 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,16 @@ typedef struct s_data
 void			init_data(t_data *data);
 void			init_mlx(t_data *data);
 void			init_textures(t_data *data);
+void			init_controls(t_data *data);
+
+// MAP
+void			load_map(t_data *data, char *map);
+char			**malloc_map(char *map, t_data *data);
+void			check_map(t_data *data);
+void			get_map_info(t_data *data, char *map);
+bool			is_map_start(char *str);
+void			get_floor_ceiling(t_data *data);
+int				validate_player(t_data *data, char **map, int i, int j);
 
 // RENDER AFFICHAGE & CO
 int				render(void *arg);
@@ -148,14 +158,19 @@ void			draw_texture_image(t_data *data, t_ray *ray, t_line *line,
 void			paint_line(t_data *data, t_line *line, int *rgb);
 void			draw_textures(t_data *data, t_ray *ray, t_player *player);
 
-// MAP
-void			load_map(t_data *data, char *map);
-char			**malloc_map(char *map, t_data *data);
-void			check_map(t_data *data);
-void			get_map_info(t_data *data, char *map);
-bool			is_map_start(char *str);
-void			get_floor_ceiling(t_data *data);
-void			display_map(t_data *data);
+// CAMERA
+void			set_camera(t_data *data, double d_y, double p_x, double p_y);
+void			turn_left(t_data *data);
+void			turn_right(t_data *data);
+
+// INPUTS
+int				handle_key_release(int key, t_data *data);
+int				handle_key_press(int key, t_data *data);
+void			event_executor(t_data *data);
+void			move_forward(t_data *data);
+void			move_right(t_data *data);
+void			move_left(t_data *data);
+void			move_backward(t_data *data);
 
 // SAFE FUNCTIONS
 int				safe_open_fd(char *file, int flag, t_data *data);
@@ -169,27 +184,9 @@ int				count_strings(char **strings);
 char			*strdup_without_n(const char *s);
 bool			is_space(char c);
 
-// INPUTS
-int				handle_input(int keysym, t_data *data);
-
 // FREE
 void			err_msg(char *str, t_data *data, bool to_free);
 void			free_tab(char **tab);
 int				free_all(t_data *data, int exit_status);
-void			debug(t_data *data);
-
-// TEST
-int				validate_player(t_data *data, char **map, int i, int j);
-void			set_camera(t_data *data, double d_y, double p_x, double p_y);
-int				handle_key_release(int key, t_data *data);
-int				handle_key_press(int key, t_data *data);
-void			event_executor(t_data *data);
-void			turn_left(t_data *data);
-void			turn_right(t_data *data);
-void			move_forward(t_data *data);
-void			move_right(t_data *data);
-void			move_left(t_data *data);
-void			move_backward(t_data *data);
-void			init_controls(t_data *data);
 
 #endif

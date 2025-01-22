@@ -24,9 +24,8 @@ INC			=	-I ./libft/\
 # Sources
 SRC_PATH	=	src/
 SRC			=	main.c init.c utils.c safe_functions.c read_map.c check_map.c \
-				get_map_info.c get_floor_ceiling.c debug.c free.c textures.c \
-				game_inputs.c render.c raycasting.c raycasting2.c draw.c camera.c \
-				event.c
+				get_map_info.c get_floor_ceiling.c free.c textures.c event.c\
+				game_inputs.c render.c raycasting.c raycasting2.c draw.c camera.c
 
 SRCS		=	$(addprefix $(SRC_PATH), $(SRC))
 
