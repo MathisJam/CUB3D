@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 18:51:04 by jchen             #+#    #+#             */
-/*   Updated: 2025/01/19 15:29:39 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/22 17:13:49 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ bool	is_map_start(char *str)
 		return (false);
 	while (str && (str[i] == '1' || str[i] == ' '))
 		i++;
-	if (str[i] == '\n')
+	if (str[i] == '\n' && i > 1)
 		return (true);
 	return (false);
 }
@@ -58,12 +58,22 @@ static int	map_line_nbr(char *str, t_data *data)
 static void	skip_not_map_lines(int fd, int start)
 {
 	int		i;
+	int		j;
 	char	*temp;
 
 	i = 0;
 	while (++i < start)
 	{
 		temp = get_next_line(fd);
+		j = 0;
+		while (temp[j] == '1' || temp[j] == '0' || temp[j] == 'N'
+			|| temp[j] == 32 || temp[j] == 'S' || temp[j] == 'W'
+			|| temp[j] == 'E')
+		{
+			if (temp[j + 1] == '\n' || temp[j + 1] == '\0')
+				i--;
+			j++;
+		}
 		free(temp);
 	}
 }
@@ -104,19 +114,20 @@ char	**malloc_map(char *map, t_data *data)
 	int		i;
 
 	data->map_start = map_line_nbr(map, data);
-	if (!(data->map_start))
+	if (!(data->map_start) || data->row_nbr == 0)
 		err_msg("Map not found\n", data, true);
 	fd = open(map, O_RDONLY);
-	map_array = NULL;
-	if (data->row_nbr != 0)
-		map_array = malloc_fd((data->row_nbr + 1) * sizeof(char *), data, &fd);
+	map_array = malloc_fd((data->row_nbr + 1) * sizeof(char *), data, &fd);
 	skip_not_map_lines(fd, data->map_start);
 	i = -1;
-	while (data->row_nbr != 0 && data->row_nbr > ++i)
+	while (data->row_nbr > ++i)
 	{
 		map_array[i] = get_next_line(fd);
 		if (!map_array[i])
-			return (free_tab(map_array), close(fd), NULL);
+		{
+			close(fd);
+			err_msg("Copy map process failed\n", data, true);
+		}
 	}
 	map_array[i] = NULL;
 	return (close(fd), map_array);

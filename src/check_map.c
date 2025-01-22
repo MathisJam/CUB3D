@@ -6,7 +6,7 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:36:23 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/22 14:25:58 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/22 16:14:30 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,12 +131,14 @@ int	validate_player(t_data *data, char **map, int i, int j)
 
 void	check_map(t_data *data)
 {
+	if (!data->map)
+		err_msg("Map not found in CHECK MAP\n", data, true);
 	if (data->map_start < 7)
 		err_msg("Don't forget the paths to the textures\n", data, true);
-	if (close_check(data, data->map))
-		err_msg("Map is not closed, or is not at the end\n", data, true);
 	if (invalid_char(data->map))
-		err_msg("Invalid char in map, please only use NSwe01\n", data, true);
+		err_msg("Invalid char in map, please only use NSWE01\n", data, true);
 	if (double_char(data->map))
 		err_msg("Need one and only one N S W E char\n", data, true);
+	if (close_check(data, data->map))
+		err_msg("Map is not closed, or is not at the end\n", data, true);
 }
