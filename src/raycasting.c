@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 13:06:47 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/22 12:54:12 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/22 14:18:04 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static void	init_values(t_ray *ray, t_player *player)
 	ray->delta_dist_y = fabs(1 / ray->ray_dir_y);
 	ray->hit = 0;
 }
+
 static void	determine_step(t_ray *ray, t_player *player)
 {
 	if (ray->ray_dir_x < 0)
@@ -70,6 +71,7 @@ static void	get_next_wall(t_ray *ray)
 			ray->side = NORTH;
 	}
 }
+
 static void	algo_dda(t_data *data, t_ray *ray)
 {
 	while (!ray->hit)
@@ -80,6 +82,7 @@ static void	algo_dda(t_data *data, t_ray *ray)
 			ray->hit = 1;
 	}
 }
+
 void	raycasting(t_data *data, t_ray *ray)
 {
 	t_player	*player;

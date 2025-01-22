@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 15:52:44 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/22 12:54:12 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/22 14:18:26 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 /*
 Fonction qui determine les distances et mets draw start et draw end a jour
 
-1. Obtiens la distance de l'intersection entre le point et la perpendiculaire du mur
-	/ cam
+1. Obtiens la distance de l'intersection entre le point et la perpendiculaire du
+ mur / cam
 2. Obtiens la hauteur de la line via la longueur de l'ecran
 3. Calcule le + petit et + grand pixel a dessiner
 */
