@@ -6,7 +6,7 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:22:49 by jchen             #+#    #+#             */
-/*   Updated: 2025/01/22 14:31:55 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/22 15:36:19 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int	main(int argc, char **argv)
 	if (argc != 2 || check_extension(argv[1], ".cub", ft_strlen(argv[1])) == 1)
 		err_msg("please enter : ./cub3D [map.cub]\n", data, true);
 	global_init(data, argv);
+	mlx_hook(data->mlx_win, 6, 1L << 6, handle_mouse_move, data);
 	mlx_hook(data->mlx_win, 17, 0, free_all, data);
 	mlx_hook(data->mlx_win, 2, 1L << 0, handle_key_press, data);
 	mlx_hook(data->mlx_win, 3, 1L << 1, handle_key_release, data);

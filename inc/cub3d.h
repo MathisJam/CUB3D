@@ -6,7 +6,7 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:11:07 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/22 14:25:24 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/22 15:36:17 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <string.h>
 # include <unistd.h>
 
+# define BONUS 0
 # define FOV 60
 # define ROTATION_SPEED 0.075
 # define PLAYER_SPEED 0.075
@@ -99,6 +100,7 @@ typedef struct s_player
 
 typedef struct s_control
 {
+	int			last_mouse_pos;
 	int			look_left;
 	int			look_right;
 	int			look_up;
@@ -166,6 +168,7 @@ void			turn_right(t_data *data);
 // INPUTS
 int				handle_key_release(int key, t_data *data);
 int				handle_key_press(int key, t_data *data);
+int				handle_mouse_move(int x, int y, t_data *data);
 void			event_executor(t_data *data);
 void			move_forward(t_data *data);
 void			move_right(t_data *data);
