@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 13:02:00 by jchen             #+#    #+#             */
-/*   Updated: 2025/01/19 15:44:01 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/22 12:53:48 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ static void	open_xpm(t_data *data, t_texture *coord)
 
 void	init_textures(t_data *data)
 {
-	open_xpm(data, data->NO);
-	open_xpm(data, data->EA);
-	open_xpm(data, data->SO);
-	open_xpm(data, data->WE);
+	open_xpm(data, data->no);
+	open_xpm(data, data->ea);
+	open_xpm(data, data->so);
+	open_xpm(data, data->we);
 }

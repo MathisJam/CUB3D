@@ -6,7 +6,7 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:12:15 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/19 16:26:21 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/22 12:54:29 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,30 +37,30 @@ void	debug(t_data *data)
 	display_char_array(data->map);
 	printf("\n");
 	printf("row_nbr : %d\n", data->row_nbr);
-	count = count_strings(data->F_strings);
-	if (data->F)
+	count = count_strings(data->f_strings);
+	if (data->floor)
 	{
 		printf("Tableau d'entiers F : ");
 		for (int i = 0; i < count; i++)
 		{
-			printf("%d ", data->F[i]);
+			printf("%d ", data->floor[i]);
 		}
 		printf("\n");
 	}
-	count = count_strings(data->C_strings);
-	if (data->C)
+	count = count_strings(data->c_strings);
+	if (data->ceiling)
 	{
 		printf("Tableau d'entiers C : ");
 		for (int i = 0; i < count; i++)
 		{
-			printf("%d ", data->C[i]);
+			printf("%d ", data->ceiling[i]);
 		}
 		printf("\n");
 	}
 	printf("Player x = %f\nPlayer y = %f\n", data->player->px,
 		data->player->py);
-	printf("NO = %s\n", data->NO->path);
-	printf("SO = %s\n", data->SO->path);
-	printf("WE = %s\n", data->WE->path);
-	printf("EA = %s\n", data->EA->path);
+	printf("no = %s\n", data->no->path);
+	printf("so = %s\n", data->so->path);
+	printf("we = %s\n", data->we->path);
+	printf("ea = %s\n", data->ea->path);
 }

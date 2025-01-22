@@ -88,7 +88,7 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 clean:
 	@echo "$(GRAY)Removing .o object files..."
 	@rm -rf $(OBJ_PATH) $(SILENT)
-	@make clean -C $(MLX_PATH) $(SILENT)
+	@if [ -d "$(MLX_PATH)" ]; then make clean -C $(MLX_PATH) $(SILENT); fi
 	@make clean -C $(LIBFT_PATH) $(SILENT)
 	@echo "$(GRAY).o object files removed!"
 

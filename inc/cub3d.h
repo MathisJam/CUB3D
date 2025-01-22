@@ -6,7 +6,7 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:11:07 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/19 16:34:24 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/22 12:54:12 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,16 @@
 # include <unistd.h>
 
 # define FOV 60
-# define ROTATION_SPEED 0.025
-# define PLAYER_SPEED 0.025
-# define WIN_HEIGHT 400
-# define WIN_WIDTH 800
+# define ROTATION_SPEED 0.075
+# define PLAYER_SPEED 0.075
+# define WIN_HEIGHT 1080
+# define WIN_WIDTH 1920
 # define NORTH 1
 # define SOUTH 2
 # define EAST 3
 # define WEST 4
-# define Cnum 5
-# define Fnum 6
+# define CNUM 5
+# define FNUM 6
 
 typedef struct s_coord
 {
@@ -111,29 +111,25 @@ typedef struct s_control
 
 typedef struct s_data
 {
-	// MLX
 	void		*mlx_ptr;
 	void		*mlx_win;
 	t_texture	*mlx_img;
 
-	// MAP
 	int			row_nbr;
 	int			column_nbr;
 	int			map_start;
 	int			player_found;
 	char		**map;
 
-	// FLOOR & CEILING
-	char		**F_strings;
-	char		**C_strings;
-	int			*F;
-	int			*C;
+	char		**f_strings;
+	char		**c_strings;
+	int			*floor;
+	int			*ceiling;
 
-	// AUTRES
-	t_texture	*NO;
-	t_texture	*SO;
-	t_texture	*WE;
-	t_texture	*EA;
+	t_texture	*no;
+	t_texture	*so;
+	t_texture	*we;
+	t_texture	*ea;
 	t_control	*control;
 	t_player	*player;
 }				t_data;

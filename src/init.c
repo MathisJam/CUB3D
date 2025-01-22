@@ -6,7 +6,7 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:03:57 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/19 16:27:36 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/22 12:53:48 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ void	init_controls(t_data *data)
 void	init_data(t_data *data)
 {
 	data->mlx_img = safe_calloc(1, sizeof(t_texture), data);
-	data->NO = safe_calloc(1, sizeof(t_texture), data);
-	data->SO = safe_calloc(1, sizeof(t_texture), data);
-	data->WE = safe_calloc(1, sizeof(t_texture), data);
-	data->EA = safe_calloc(1, sizeof(t_texture), data);
+	data->no = safe_calloc(1, sizeof(t_texture), data);
+	data->so = safe_calloc(1, sizeof(t_texture), data);
+	data->we = safe_calloc(1, sizeof(t_texture), data);
+	data->ea = safe_calloc(1, sizeof(t_texture), data);
 	init_player(data);
 }
 

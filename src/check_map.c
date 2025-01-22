@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:36:23 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/19 17:41:02 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/22 12:52:10 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ void	check_map(t_data *data)
 	if (close_check(data, data->map))
 		err_msg("Map is not closed, or is not at the end\n", data, true);
 	if (invalid_char(data->map))
-		err_msg("Invalid char in map, please only use NSWE01\n", data, true);
+		err_msg("Invalid char in map, please only use NSwe01\n", data, true);
 	if (double_char(data->map))
 		err_msg("Need one and only one N S W E char\n", data, true);
 }

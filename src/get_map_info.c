@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map_info.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:38:11 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/19 11:13:49 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/22 12:56:04 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,18 @@ static char	*catch_path(char *line)
 
 static int	is_texture(t_data *data, char *line)
 {
-	if (ft_strstr(line, "NO") && !data->NO->path)
+	if (ft_strstr(line, "NO") && !data->no->path)
 		return (NORTH);
-	else if (ft_strstr(line, "EA") && !data->EA->path)
+	else if (ft_strstr(line, "EA") && !data->ea->path)
 		return (EAST);
-	else if (ft_strstr(line, "WE") && !data->WE->path)
+	else if (ft_strstr(line, "WE") && !data->we->path)
 		return (WEST);
-	else if (ft_strstr(line, "SO") && !data->SO->path)
+	else if (ft_strstr(line, "SO") && !data->so->path)
 		return (SOUTH);
-	else if (ft_strstr(line, "F") && !data->F_strings)
-		return (Fnum);
-	else if (ft_strstr(line, "C") && !data->C_strings)
-		return (Cnum);
+	else if (ft_strstr(line, "F") && !data->f_strings)
+		return (FNUM);
+	else if (ft_strstr(line, "C") && !data->c_strings)
+		return (CNUM);
 	return (-1);
 }
 
@@ -51,23 +51,23 @@ static void	get_textures_info(t_data *data, char *line, int code)
 
 	j = -1;
 	if (code == NORTH && catch_path(line) != NULL)
-		data->NO->path = strdup_without_n(catch_path(line));
+		data->no->path = strdup_without_n(catch_path(line));
 	else if (code == EAST && catch_path(line) != NULL)
-		data->EA->path = strdup_without_n(catch_path(line));
+		data->ea->path = strdup_without_n(catch_path(line));
 	else if (code == WEST && catch_path(line) != NULL)
-		data->WE->path = strdup_without_n(catch_path(line));
+		data->we->path = strdup_without_n(catch_path(line));
 	else if (code == SOUTH && catch_path(line) != NULL)
-		data->SO->path = strdup_without_n(catch_path(line));
-	else if (code == Fnum)
-		data->F_strings = ft_split(line, ',');
-	else if (code == Cnum)
-		data->C_strings = ft_split(line, ',');
+		data->so->path = strdup_without_n(catch_path(line));
+	else if (code == FNUM)
+		data->f_strings = ft_split(line, ',');
+	else if (code == CNUM)
+		data->c_strings = ft_split(line, ',');
 }
 
 static bool	valid_textures_info(t_data *data)
 {
-	if (!data->NO->path || !data->EA->path || !data->WE->path || !data->SO->path
-		|| !data->F_strings || !data->C_strings)
+	if (!data->no->path || !data->ea->path || !data->we->path || !data->so->path
+		|| !data->f_strings || !data->c_strings)
 		return (false);
 	return (true);
 }

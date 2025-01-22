@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 13:06:47 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/19 17:40:55 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/22 12:54:12 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ static void	algo_dda(t_data *data, t_ray *ray)
 	while (!ray->hit)
 	{
 		get_next_wall(ray);
-		if (data->map[ray->map_y][ray->map_x] == '1')
+		if (data->map[ray->map_y][ray->map_x] == '1'
+			|| data->map[ray->map_y][ray->map_x] == 32)
 			ray->hit = 1;
 	}
 }
