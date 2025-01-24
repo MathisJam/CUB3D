@@ -6,7 +6,7 @@
 /*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:52:23 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/24 18:54:54 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/24 19:01:07 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	skip_one_line(int fd)
 	while (++i < 1)
 	{
 		tmp = get_next_line(fd);
-		printf("%s", tmp);
 		free(tmp);
 	}
 }
