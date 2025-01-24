@@ -6,7 +6,7 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:11:07 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/22 19:23:00 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/24 13:57:49 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,7 @@ int				check_extension(const char *big, const char *little,
 int				count_strings(char **strings);
 char			*strdup_without_n(const char *s);
 bool			is_space(char c);
+bool			is_wall(char c);
 
 // FREE
 void			err_msg(char *str, t_data *data, bool to_free);
