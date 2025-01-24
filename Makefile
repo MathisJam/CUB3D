@@ -45,7 +45,7 @@ OBJ_PATH	=	obj/
 OBJ			=	$(SRC:.c=.o)
 OBJS		=	$(addprefix $(OBJ_PATH), $(OBJ))
 
-# Color codes for terminal output8
+# Color codes for terminal output
 RESET = \033[0;39m
 GRAY = \033[0;90m
 RED = \033[0;91m

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:36:23 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/24 16:05:38 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/24 17:44:02 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,28 @@ static int	invalid_char(char **map)
 	}
 	return (0);
 }
+void	close_check2(t_data *data, char **map, int i, int l)
+{
+	int	next_l;
+
+	if (!map[i + 1])
+		return ;
+	next_l = ft_strlen(map[i + 1]) - 1;
+	if (next_l - 1 < l)
+	{
+		while (l-- > next_l)
+			if (map[i][l] != '1')
+				err_msg("Map not closed", data, true);
+	}
+	else if (next_l - 1 > l)
+	{
+		while (l++ < next_l - 1)
+			if (map[i + 1][l] != '1')
+				err_msg("Map not closed", data, true);
+	}
+	if (map[i + 1][next_l - 1] != '1')
+		err_msg("Map not closed", data, true);
+}
 
 static int	close_check(t_data *data, char **map)
 {
@@ -101,10 +123,9 @@ static int	close_check(t_data *data, char **map)
 		l = ft_strlen(map[i]) - 1;
 		while (l > 0 && is_space(map[i][l]))
 			l--;
-		if (map[i][j] != '1' || map[i][l] != '1' || (map[i + 1] && map[i + 1][l
-				+ 1] && (!is_wall(map[i + 1][l - 1]) && !is_wall(map[i + 1][l])
-					&& !is_wall(map[i + 1][l + 1]))))
+		if (map[i][j] != '1' || map[i][l] != '1')
 			return (1);
+		close_check2(data, map, i, l);
 		while (map[i][j++])
 			validate_player(data, data->map, i, j);
 	}
