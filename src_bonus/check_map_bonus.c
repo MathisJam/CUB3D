@@ -6,7 +6,7 @@
 /*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:36:23 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/24 12:19:33 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/24 17:53:37 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	check_line(char *line)
 		return (1);
 }
 
-static int	double_char(char **map)
+static int	double_char(char **map, t_data *data)
 {
 	int	i;
 	int	j;
@@ -40,7 +40,10 @@ static int	double_char(char **map)
 		{
 			if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E'
 				|| map[i][j] == 'W')
+			{
+				not_empty(map, i, j, data);
 				flag++;
+			}
 		}
 	}
 	if (flag != 1)
@@ -49,31 +52,34 @@ static int	double_char(char **map)
 		return (0);
 }
 
-static int	invalid_char(char **map)
+void	close_check2(t_data *data, char **map, int i, int l)
 {
-	int	i;
-	int	j;
+	int	next_l;
 
-	i = -1;
-	while (map[++i])
+	if (!map[i + 1])
+		return ;
+	next_l = ft_strlen(map[i + 1]) - 1;
+	if (next_l - 1 < l)
 	{
-		j = -1;
-		while (map[i][++j])
-		{
-			if (map[i][j] != '1' && map[i][j] != '0' && map[i][j] != 'N'
-				&& map[i][j] != 'S' && map[i][j] != 'E' && map[i][j] != 'W'
-				&& !is_space(map[i][j]))
-				return (1);
-		}
+		while (l-- > next_l)
+			if (map[i][l] != '1')
+				err_msg("Map not closed", data, true);
 	}
-	return (0);
+	else if (next_l - 1 > l)
+	{
+		while (l++ < next_l - 1)
+			if (map[i + 1][l] != '1')
+				err_msg("Map not closed", data, true);
+	}
+	if (map[i + 1][next_l - 1] != '1')
+		err_msg("Map not closed", data, true);
 }
 
 static int	close_check(t_data *data, char **map)
 {
 	int	i;
 	int	j;
-	int	len;
+	int	l;
 
 	i = -1;
 	if (check_line(map[0]) || check_line(map[(data->row_nbr) - 1]))
@@ -83,13 +89,12 @@ static int	close_check(t_data *data, char **map)
 		j = 0;
 		while (is_space(map[i][j]))
 			j++;
-		if (map[i][j] != '1')
+		l = ft_strlen(map[i]) - 1;
+		while (l > 0 && is_space(map[i][l]))
+			l--;
+		if (map[i][j] != '1' || map[i][l] != '1')
 			return (1);
-		len = ft_strlen(map[i]) - 1;
-		while (len > 0 && is_space(map[i][len]))
-			len--;
-		if (map[i][len] != '1')
-			return (1);
+		close_check2(data, map, i, l);
 		while (map[i][j++])
 			validate_player(data, data->map, i, j);
 	}
@@ -105,9 +110,9 @@ void	check_map(t_data *data)
 	if (data->map_start < 7)
 		err_msg("Don't forget the paths to the textures\n", data, true);
 	if (invalid_char(data->map))
-		err_msg("Invalid char in map, please only use NSWE01\n", data, true);
+		err_msg("Invalid char in map, or not at the end\n", data, true);
 	if (close_check(data, data->map))
 		err_msg("Map is not closed, or is not at the end\n", data, true);
-	if (double_char(data->map))
+	if (double_char(data->map, data))
 		err_msg("Need one and only one N S W E char\n", data, true);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:11:07 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/24 16:10:41 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/24 18:54:59 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,6 +185,10 @@ int				count_strings(char **strings);
 char			*strdup_without_n(const char *s);
 bool			is_space(char c);
 bool			is_wall(char c);
+int				is_char(char c);
+void			not_empty(char **map, int y, int x, t_data *data);
+int				invalid_char(char **map, t_data *data);
+void			skip_one_line(int fd);
 
 // FREE
 void			err_msg(char *str, t_data *data, bool to_free);

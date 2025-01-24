@@ -6,7 +6,7 @@
 /*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 13:06:47 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/22 15:29:25 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/24 17:45:46 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,7 @@ static void	algo_dda(t_data *data, t_ray *ray)
 	while (!ray->hit)
 	{
 		get_next_wall(ray);
-		if (data->map[ray->map_y][ray->map_x] == '1'
-			|| data->map[ray->map_y][ray->map_x] == 32)
+		if (is_wall(data->map[ray->map_y][ray->map_x]))
 			ray->hit = 1;
 	}
 }

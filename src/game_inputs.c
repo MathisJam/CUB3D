@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_inputs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 13:48:32 by jchen             #+#    #+#             */
-/*   Updated: 2025/01/24 13:57:49 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/24 17:48:27 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	move_forward(t_data *data)
 
 	player = data->player;
 	if (!is_wall(data->map[(int)(player->py)][(int)(player->px
-				+ player->dir_vect.x * ceil(player->speed))]))
+		+ player->dir_vect.x * ceil(player->speed))]))
 		player->px += (player->speed * player->dir_vect.x);
 	if (!is_wall(data->map[(int)(player->py + player->dir_vect.y
 				* ceil(player->speed))][(int)(player->px)]))
@@ -36,7 +36,7 @@ void	move_right(t_data *data)
 
 	player = data->player;
 	if (!is_wall(data->map[(int)(player->py)][(int)(player->px
-				+ player->cam_plane_vect.x * ceil(player->speed))]))
+		+ player->cam_plane_vect.x * ceil(player->speed))]))
 		player->px += (player->speed * player->cam_plane_vect.x);
 	if (!is_wall(data->map[(int)(player->py + player->cam_plane_vect.y
 				* ceil(player->speed))][(int)(player->px)]))
@@ -49,7 +49,7 @@ void	move_left(t_data *data)
 
 	player = data->player;
 	if (!is_wall(data->map[(int)(player->py)][(int)(player->px
-				- player->cam_plane_vect.x * ceil(player->speed))]))
+		- player->cam_plane_vect.x * ceil(player->speed))]))
 		player->px -= (player->speed * player->cam_plane_vect.x);
 	if (!is_wall(data->map[(int)(player->py - player->cam_plane_vect.y
 				* ceil(player->speed))][(int)(player->px)]))
@@ -62,7 +62,7 @@ void	move_backward(t_data *data)
 
 	player = data->player;
 	if (!is_wall(data->map[(int)(player->py)][(int)(player->px
-				- player->dir_vect.x * ceil(player->speed))]))
+		- player->dir_vect.x * ceil(player->speed))]))
 		player->px -= (player->speed * player->dir_vect.x);
 	if (!is_wall(data->map[(int)((player->py - player->dir_vect.y
 					* ceil(player->speed)))][(int)(player->px)]))

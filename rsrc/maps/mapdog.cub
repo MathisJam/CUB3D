@@ -2,8 +2,10 @@ EA	./rsrc/textures/corgidrowning.xpm
 NO	./rsrc/textures/fatdog.xpm
 SO	./rsrc/textures/angrydog.xpm
 WE	./rsrc/textures/illuminati.xpm
+
 C	240,255,255
 F	245,222,179
+
                           111        111
                          111111     11111
                         111111111111111111

@@ -28,12 +28,14 @@ INC			=	-I ./libft/\
 SRC_PATH	=	src/
 SRC			=	main.c init.c utils.c safe_functions.c read_map.c check_map.c \
 				get_map_info.c get_floor_ceiling.c free.c textures.c event.c\
-				game_inputs.c render.c raycasting.c raycasting2.c draw.c camera.c
+				game_inputs.c render.c raycasting.c raycasting2.c draw.c camera.c\
+				utils2.c
 
 # Bonus sources
 SRCSBONUS			=	main_bonus.c init_bonus.c utils_bonus.c safe_functions_bonus.c read_map_bonus.c check_map_bonus.c \
 				get_map_info_bonus.c get_floor_ceiling_bonus.c free_bonus.c textures_bonus.c event_bonus.c\
-				game_inputs_bonus.c render_bonus.c raycasting_bonus.c raycasting2_bonus.c draw_bonus.c camera_bonus.c
+				game_inputs_bonus.c render_bonus.c raycasting_bonus.c raycasting2_bonus.c draw_bonus.c camera_bonus.c\
+				utils2_bonus.c
 
 # Objects bonus
 OBJ_PATHb	=	obj/

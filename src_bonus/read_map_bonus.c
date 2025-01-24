@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_map.c                                         :+:      :+:    :+:   */
+/*   read_map_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 18:51:04 by jchen             #+#    #+#             */
-/*   Updated: 2025/01/24 12:18:22 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/01/24 18:51:20 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,11 @@ bool	is_map_start(char *str)
 	i = 0;
 	if (!str || ft_strlen(str) == 1)
 		return (false);
-	while (str && (str[i] == '1' || str[i] == ' ' || str[i] == '\t'))
+	while (str && (str[i] == '1' || str[i] == ' '))
 		i++;
 	if (str[i] == '\n' && i > 1)
 		return (true);
 	return (false);
-}
-
-static int	is_char(char c)
-{
-	return (c == '1' || c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W'
-		|| c == '\t' || c == ' ');
 }
 
 static int	map_line_nbr(char *str, t_data *data)
@@ -48,7 +42,6 @@ static int	map_line_nbr(char *str, t_data *data)
 	{
 		i++;
 		j = 0;
-		// while (line && (line[j] == '1' || line[j] == ' '))
 		while (line && is_char(line[j]))
 			j++;
 		if (j > 1 && (line[j] == '\n'))
@@ -66,22 +59,28 @@ static void	skip_not_map_lines(int fd, int start)
 {
 	int		i;
 	int		j;
-	char	*temp;
+	bool	flag;
+	char	*tmp;
 
 	i = 0;
+	flag = false;
 	while (++i < start)
 	{
-		temp = get_next_line(fd);
+		tmp = get_next_line(fd);
 		j = 0;
-		while (temp[j] == '1' || temp[j] == '0' || temp[j] == 'N'
-			|| temp[j] == 32 || temp[j] == 'S' || temp[j] == 'W'
-			|| temp[j] == 'E')
+		while (tmp[j] == '1' || tmp[j] == '0' || tmp[j] == 'N' || tmp[j] == 32
+			|| tmp[j] == 'S' || tmp[j] == 'W' || tmp[j] == 'E')
 		{
-			if (temp[j + 1] && (temp[j + 1] == '\n' || temp[j + 1] == '\0'))
+			if (tmp[j + 1] && i == 1 && !flag && (tmp[j + 1] == '\n' || tmp[j
+						+ 1] == '\0'))
+			{
+				flag = true;
+				start -= 1;
 				i--;
+			}
 			j++;
 		}
-		free(temp);
+		free(tmp);
 	}
 }
 

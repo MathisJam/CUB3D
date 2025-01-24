@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:36:23 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/24 17:44:02 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/24 18:52:26 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,6 @@ static int	check_line(char *line)
 		return (0);
 	else
 		return (1);
-}
-
-void	not_empty(char **map, int y, int x, t_data *data)
-{
-	if (map[y + 1] && map[y - 1] && map[y + 1][x - 1] && map[y + 1][x + 1]
-		&& map[y - 1][x - 1] && map[y - 1][x + 1] && (map[y - 1][x - 1] != '\0'
-			&& map[y - 1][x] != '\0' && map[y - 1][x - 1] != '\0' && map[y][x
-			- 1] != '\0' && map[y][x] != '\0' && map[y][x + 1] != '\0' && map[y
-			+ 1][x - 1] != '\0' && map[y + 1][x] != '\0' && map[y + 1][x
-			+ 1] != '\0'))
-		return ;
-	err_msg("Player outside the map\n", data, true);
 }
 
 static int	double_char(char **map, t_data *data)
@@ -64,25 +52,6 @@ static int	double_char(char **map, t_data *data)
 		return (0);
 }
 
-static int	invalid_char(char **map)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	while (map[++i])
-	{
-		j = -1;
-		while (map[i][++j])
-		{
-			if (map[i][j] != '1' && map[i][j] != '0' && map[i][j] != 'N'
-				&& map[i][j] != 'S' && map[i][j] != 'E' && map[i][j] != 'W'
-				&& !is_space(map[i][j]))
-				return (1);
-		}
-	}
-	return (0);
-}
 void	close_check2(t_data *data, char **map, int i, int l)
 {
 	int	next_l;
@@ -140,7 +109,7 @@ void	check_map(t_data *data)
 		err_msg("Map not found in CHECK MAP\n", data, true);
 	if (data->map_start < 7)
 		err_msg("Don't forget the paths to the textures\n", data, true);
-	if (invalid_char(data->map))
+	if (invalid_char(data->map, data))
 		err_msg("Invalid char in map, or not at the end\n", data, true);
 	if (close_check(data, data->map))
 		err_msg("Map is not closed, or is not at the end\n", data, true);

@@ -6,7 +6,7 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 13:52:01 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/22 19:25:30 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/24 13:57:49 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,7 @@ void	draw_textures(t_data *data, t_ray *ray, t_player *player)
 		wall_x = player->px + ray->prep_wall_dist * ray->ray_dir_x;
 	wall_x -= floor(wall_x);
 	line->x = ray->curr_x;
-	if (data->map[ray->map_y][ray->map_x] == '1'
-		|| data->map[ray->map_y][ray->map_x] == 32)
+	if (is_wall(data->map[ray->map_y][ray->map_x]))
 		paint_texture_line(data, ray, line, wall_x);
 	line->y0 = 0;
 	line->y1 = ray->draw_start;

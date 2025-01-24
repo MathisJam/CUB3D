@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 18:51:04 by jchen             #+#    #+#             */
-/*   Updated: 2025/01/24 13:32:04 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/24 18:56:08 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,11 @@ bool	is_map_start(char *str)
 	i = 0;
 	if (!str || ft_strlen(str) == 1)
 		return (false);
-	while (str && (str[i] == '1' || str[i] == ' ' || str[i] == '\t'))
+	while (str && (str[i] == '1' || str[i] == ' '))
 		i++;
 	if (str[i] == '\n' && i > 1)
 		return (true);
 	return (false);
-}
-
-static int	is_char(char c)
-{
-	return (c == '1' || c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W'
-		|| c == '\t' || c == ' ');
 }
 
 static int	map_line_nbr(char *str, t_data *data)
@@ -78,7 +72,7 @@ static void	skip_not_map_lines(int fd, int start)
 			|| tmp[j] == 'S' || tmp[j] == 'W' || tmp[j] == 'E')
 		{
 			if (tmp[j + 1] && i == 1 && !flag && (tmp[j + 1] == '\n' || tmp[j
-					+ 1] == '\0'))
+						+ 1] == '\0'))
 			{
 				flag = true;
 				start -= 1;
@@ -140,6 +134,8 @@ char	**malloc_map(char *map, t_data *data)
 			close(fd);
 			err_msg("Copy map process failed\n", data, true);
 		}
+		if (map_array[i][0] == '\n' || map_array[i][0] == '\0')
+			skip_one_line(fd);
 	}
 	map_array[i] = NULL;
 	return (close(fd), map_array);
