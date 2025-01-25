@@ -6,117 +6,126 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 16:58:09 by jchen             #+#    #+#             */
-/*   Updated: 2025/01/18 13:59:37 by jchen            ###   ########.fr       */
+/*   Updated: 2025/01/25 14:16:23 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	gnl_strlen(const char *s)
+char	*ft_strjoin_free(char *buffer, char *reading)
 {
-	int	count;
+	char	*tmp;
 
-	count = 0;
-	if (!s)
-		return (0);
-	while (s[count] != '\0')
-		count++;
-	return (count);
+	tmp = ft_strjoin(buffer, reading);
+	free(buffer);
+	return (tmp);
 }
 
-char	*gnl_substr(char const *s, unsigned int start, size_t len)
-{
-	size_t	s_len;
-	char	*substr;
-	size_t	i;
+// size_t	gnl_strlen(const char *s)
+// {
+// 	int	count;
 
-	if (!s)
-		return (NULL);
-	s_len = gnl_strlen(s);
-	i = 0;
-	if (len > s_len)
-		len = s_len;
-	if (start >= s_len)
-	{
-		substr = (char *)malloc(1);
-		if (substr == NULL)
-			return (NULL);
-		substr[0] = '\0';
-		return (substr);
-	}
-	substr = (char *)malloc(len + 1);
-	if (substr == NULL)
-		return (NULL);
-	while (i++ < start)
-		s++;
-	gnl_strlcpy(substr, s, len + 1);
-	return (substr);
-}
+// 	count = 0;
+// 	if (!s)
+// 		return (0);
+// 	while (s[count] != '\0')
+// 		count++;
+// 	return (count);
+// }
 
-size_t	gnl_strlcpy(char *dst, const char *src, size_t size)
-{
-	unsigned int	i;
-	size_t			size_src;
+// char	*gnl_substr(char const *s, unsigned int start, size_t len)
+// {
+// 	size_t	s_len;
+// 	char	*substr;
+// 	size_t	i;
 
-	i = 0;
-	if (src == NULL)
-		return (0);
-	size_src = gnl_strlen(src);
-	if ((int)size < 0)
-		size = size_src + 1;
-	if (size >= 2 && size_src != 0)
-	{
-		while (i < size - 1)
-		{
-			if (i < size_src)
-				dst[i] = src[i];
-			else if (i == size_src)
-				dst[i] = '\0';
-			i++;
-		}
-	}
-	if (size != 0)
-		dst[i] = '\0';
-	return (size_src);
-}
+// 	if (!s)
+// 		return (NULL);
+// 	s_len = gnl_strlen(s);
+// 	i = 0;
+// 	if (len > s_len)
+// 		len = s_len;
+// 	if (start >= s_len)
+// 	{
+// 		substr = (char *)malloc(1);
+// 		if (substr == NULL)
+// 			return (NULL);
+// 		substr[0] = '\0';
+// 		return (substr);
+// 	}
+// 	substr = (char *)malloc(len + 1);
+// 	if (substr == NULL)
+// 		return (NULL);
+// 	while (i++ < start)
+// 		s++;
+// 	gnl_strlcpy(substr, s, len + 1);
+// 	return (substr);
+// }
 
-int	gnl_strchr_i(const char *s, int c)
-{
-	unsigned char	c_unsigned;
-	int				i;
+// size_t	gnl_strlcpy(char *dst, const char *src, size_t size)
+// {
+// 	unsigned int	i;
+// 	size_t			size_src;
 
-	i = 0;
-	if (!s)
-		return (-1);
-	c_unsigned = (unsigned char)c;
-	while (s[i] != '\0')
-	{
-		if (s[i] == c_unsigned)
-			return (i);
-		i++;
-	}
-	if (c_unsigned == '\0')
-		return (i);
-	return (-1);
-}
+// 	i = 0;
+// 	if (src == NULL)
+// 		return (0);
+// 	size_src = gnl_strlen(src);
+// 	if ((int)size < 0)
+// 		size = size_src + 1;
+// 	if (size >= 2 && size_src != 0)
+// 	{
+// 		while (i < size - 1)
+// 		{
+// 			if (i < size_src)
+// 				dst[i] = src[i];
+// 			else if (i == size_src)
+// 				dst[i] = '\0';
+// 			i++;
+// 		}
+// 	}
+// 	if (size != 0)
+// 		dst[i] = '\0';
+// 	return (size_src);
+// }
 
-size_t	gnl_strlcat(char *dst, const char *src, size_t size)
-{
-	char			*ptr;
-	unsigned int	i;
+// int	gnl_strchr_i(const char *s, int c)
+// {
+// 	unsigned char	c_unsigned;
+// 	int				i;
 
-	if (size < gnl_strlen(dst))
-		return (gnl_strlen(src) + size);
-	ptr = dst + gnl_strlen(dst);
-	i = gnl_strlen(dst);
-	while (i < size - 1 && *src != '\0' && size >= 2)
-	{
-		*ptr = *src;
-		ptr++;
-		src++;
-		i++;
-	}
-	if (size != 0)
-		*ptr = '\0';
-	return (gnl_strlen(dst) + gnl_strlen(src));
-}
+// 	i = 0;
+// 	if (!s)
+// 		return (-1);
+// 	c_unsigned = (unsigned char)c;
+// 	while (s[i] != '\0')
+// 	{
+// 		if (s[i] == c_unsigned)
+// 			return (i);
+// 		i++;
+// 	}
+// 	if (c_unsigned == '\0')
+// 		return (i);
+// 	return (-1);
+// }
+
+// size_t	gnl_strlcat(char *dst, const char *src, size_t size)
+// {
+// 	char			*ptr;
+// 	unsigned int	i;
+
+// 	if (size < gnl_strlen(dst))
+// 		return (gnl_strlen(src) + size);
+// 	ptr = dst + gnl_strlen(dst);
+// 	i = gnl_strlen(dst);
+// 	while (i < size - 1 && *src != '\0' && size >= 2)
+// 	{
+// 		*ptr = *src;
+// 		ptr++;
+// 		src++;
+// 		i++;
+// 	}
+// 	if (size != 0)
+// 		*ptr = '\0';
+// 	return (gnl_strlen(dst) + gnl_strlen(src));
+// }
