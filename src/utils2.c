@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:52:23 by mjameau           #+#    #+#             */
-/*   Updated: 2025/02/04 16:16:11 by jchen            ###   ########.fr       */
+/*   Updated: 2025/02/04 16:20:04 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	not_empty(char **map, int y, int x, t_data *data)
 		return ;
 	err_msg("Player outside the map\n", data, true);
 }
-
 
 int	invalid_char(char **map, t_data *data)
 {
@@ -51,11 +50,10 @@ int	invalid_char(char **map, t_data *data)
 
 int	get_map_len(char **map)
 {
-	int i;
+	int	i;
 
 	i = 0;
-
-	while(map[i])
+	while (map[i])
 		i++;
 	return (i);
 }
@@ -64,6 +62,16 @@ void	is_double_texture(t_data *data, int code)
 {
 	if ((code == NORTH && data->no->path) || (code == EAST && data->ea->path)
 		|| (code == SOUTH && data->so->path) || (code == WEST && data->we->path)
-		|| (code == FNUM && data->f_strings) || (code == CNUM && data->c_strings))
+		|| (code == FNUM && data->f_strings) || (code == CNUM
+			&& data->c_strings))
 		err_msg("Too many texture\n", data, true);
+}
+
+bool	skip_newline(char **map, int *i)
+{
+	while (map[*i][0] == '\n')
+		(*i)++;
+	if (is_map_start(map[*i]))
+		return (true);
+	return (false);
 }

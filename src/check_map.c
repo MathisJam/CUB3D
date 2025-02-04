@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:36:23 by mjameau           #+#    #+#             */
-/*   Updated: 2025/02/04 16:15:43 by jchen            ###   ########.fr       */
+/*   Updated: 2025/02/04 16:19:59 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,6 @@ static int	double_char(char **map, t_data *data)
 		return (0);
 }
 
-
-bool	skip_newline(char **map, int *i)
-{
-	while(map[*i][0] == '\n')
-		(*i)++;
-	if (is_map_start(map[*i]))
-		return(true);
-	return(false);
-}
-
 void	close_check2(t_data *data, char **map, int i, int l)
 {
 	int	next_l;
@@ -104,7 +94,8 @@ static int	close_check(t_data *data, char **map)
 		l = ft_strlen(map[i]) - 1;
 		while (l > 0 && is_space(map[i][l]))
 			l--;
-		if ((map[i][j] != '1' || map[i][l] != '1') && (map[i][0] != '\n' || map[i][l] != '\n'))
+		if ((map[i][j] != '1' || map[i][l] != '1') && (map[i][0] != '\n'
+				|| map[i][l] != '\n'))
 			return (1);
 		close_check2(data, map, i, l);
 		while (map[i][j++])

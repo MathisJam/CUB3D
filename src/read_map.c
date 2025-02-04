@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 18:51:04 by jchen             #+#    #+#             */
-/*   Updated: 2025/02/04 12:36:08 by jchen            ###   ########.fr       */
+/*   Updated: 2025/02/04 16:20:19 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int	load_map(t_data *data, char *map)
 		{
 			free(data->map[i]);
 			data->map[i] = ft_strdup(line);
-			printf("map[%d] = %s", i, data->map[i]);
 			i++;
 		}
 		free(line);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 16:58:21 by jchen             #+#    #+#             */
-/*   Updated: 2025/01/25 14:15:44 by jchen            ###   ########.fr       */
+/*   Updated: 2025/02/04 16:20:58 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*ft_get_line(char *buffer)
 		i++;
 	if (buffer[i] == '\n')
 		i++;
-	tmp = (char *) malloc((i + 1) * sizeof(char));
+	tmp = (char *)malloc((i + 1) * sizeof(char));
 	if (!tmp)
 		return (NULL);
 	if (buffer[i - 1] == '\n')
@@ -71,7 +71,7 @@ char	*ft_get_next(char *buffer)
 		free(buffer);
 		return (NULL);
 	}
-	tmp = (char *) malloc((ft_strlen(buffer) - i + 1) * sizeof(char));
+	tmp = (char *)malloc((ft_strlen(buffer) - i + 1) * sizeof(char));
 	if (!tmp)
 	{
 		free(buffer);
@@ -91,10 +91,10 @@ char	*ft_read(int fd, char *buffer)
 
 	if (!buffer)
 	{
-		buffer = (char *) malloc(1);
+		buffer = (char *)malloc(1);
 		buffer[0] = 0;
 	}
-	reading = (char *) malloc((BUFFER_SIZE + 1) * sizeof(char));
+	reading = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!reading)
 		return (NULL);
 	bytes_read = 1;
@@ -115,8 +115,8 @@ char	*ft_read(int fd, char *buffer)
 
 char	*get_next_line(int fd)
 {
-	char		*line;
-	static char	*buffer;
+	char *line;
+	static char *buffer;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
@@ -127,135 +127,3 @@ char	*get_next_line(int fd)
 	buffer = ft_get_next(buffer);
 	return (line);
 }
-
-/*
-#include <fcntl.h>
-#include <stdio.h>
-
-int main(int ac, char **av)
-{
-int fd;
-char *line;
-
-if (ac < 2)
-fd = 0;
-else
-fd = open(av[1], O_RDONLY);
-line = get_next_line(fd);
-while (line)
-{
-ft_printf("%s", line);
-line = get_next_line(fd);
-}
-return (0);
-}
-
- */
-// #include "libft.h"
-
-// static char	*buf[4096];
-
-// void	gnl_clear_all_buffers(void)
-// {
-// 	int	i;
-
-// 	// Parcourt tous les descripteurs potentiels (0 à 4095)
-// 	for (i = 0; i < 4096; i++)
-// 	{
-// 		if (buf[i]) // Si un buffer existe, libère sa mémoire
-// 		{
-// 			free(buf[i]);
-// 			buf[i] = NULL; // Réinitialise le pointeur à NULL
-// 		}
-// 	}
-// }
-
-// char	*get_next_line(int fd)
-// {
-// 	char	*line;
-// 	size_t	old_len;
-
-// 	if (fd < 0 || fd > 4095 || BUFFER_SIZE < 0)
-// 		return (NULL);
-// 	line = NULL;
-// 	if (gnl_strchr_i(buf[fd], '\n') == -1)
-// 	{
-// 		old_len = gnl_strlen(buf[fd]);
-// 		buf[fd] = gnl_expand_buffer(buf[fd], fd);
-// 		if (old_len == gnl_strlen(buf[fd]) && buf[fd])
-// 			line = gnl_substr(buf[fd], 0, gnl_strlen(buf[fd]));
-// 	}
-// 	if (!buf[fd])
-// 		return (NULL);
-// 	if (!line && gnl_strchr_i(buf[fd], '\n') != -1)
-// 		line = gnl_substr(buf[fd], 0, gnl_strchr_i(buf[fd], '\n') + 1);
-// 	if (line)
-// 	{
-// 		buf[fd] = gnl_shrink_buffer(buf[fd], line);
-// 		return (line);
-// 	}
-// 	return (get_next_line(fd));
-// }
-
-// char	*gnl_shrink_buffer(char *buf, char *line)
-// {
-// 	char	*newbuf;
-// 	int		line_len;
-
-// 	if (!buf || !line)
-// 		return (buf);
-// 	line_len = gnl_strlen(line);
-// 	if ((int)gnl_strlen(buf) == line_len)
-// 	{
-// 		free(buf);
-// 		return (NULL);
-// 	}
-// 	newbuf = gnl_substr(buf, line_len, gnl_strlen(buf) - line_len);
-// 	free(buf);
-// 	return (newbuf);
-// }
-
-// char	*gnl_expand_buffer(char *buf, int fd)
-// {
-// 	char	*newbuf;
-// 	int		newlen;
-// 	char	*aux;
-
-// 	aux = gnl_newread(fd);
-// 	if (!aux)
-// 		return (NULL);
-// 	if (!aux[0])
-// 	{
-// 		free(aux);
-// 		return (buf);
-// 	}
-// 	if (!buf)
-// 		return (aux);
-// 	newlen = gnl_strlen(buf) + gnl_strlen(aux);
-// 	newbuf = malloc(newlen + 1);
-// 	if (!newbuf)
-// 		return (NULL);
-// 	gnl_strlcpy(newbuf, buf, newlen + 1);
-// 	gnl_strlcat(newbuf, aux, newlen + 1);
-// 	free(buf);
-// 	free(aux);
-// 	return (newbuf);
-// }
-
-// char	*gnl_newread(int fd)
-// {
-// 	int		nbytes;
-// 	char	*aux;
-
-// 	aux = malloc(BUFFER_SIZE + 1);
-// 	if (!aux)
-// 		return (NULL);
-// 	nbytes = read(fd, aux, BUFFER_SIZE);
-// 	if (nbytes < 0)
-// 	{
-// 		free(aux);
-// 		return (NULL);
-// 	}
-// 	aux[nbytes] = '\0';
-// 	return (aux);
-// }
