@@ -6,7 +6,7 @@
 /*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:22:49 by jchen             #+#    #+#             */
-/*   Updated: 2025/02/04 12:57:16 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/02/04 13:16:44 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,21 @@ static void	global_init(t_data *data, char **argv)
 	data->row_nbr = get_map_len(data->map);
 
 	check_map(data);
-	// get_map_info(data, argv[1]);
-	// get_floor_ceiling(data);
-	// init_mlx(data);
-	// init_textures(data);
+	get_map_info(data, argv[1]);
+	get_floor_ceiling(data);
+	init_mlx(data);
+	init_textures(data);
 }
 
-// static void	mlx(t_data *data)
-// {
-// 	mlx_hook(data->mlx_win, 6, 1L << 6, handle_mouse_move, data);
-// 	mlx_hook(data->mlx_win, 17, 0, free_all, data);
-// 	mlx_hook(data->mlx_win, 2, 1L << 0, handle_key_press, data);
-// 	mlx_hook(data->mlx_win, 3, 1L << 1, handle_key_release, data);
-// 	mlx_loop_hook(data->mlx_ptr, render, data);
-// 	mlx_loop(data->mlx_ptr);
-// }
+static void	mlx(t_data *data)
+{
+	mlx_hook(data->mlx_win, 6, 1L << 6, handle_mouse_move, data);
+	mlx_hook(data->mlx_win, 17, 0, free_all, data);
+	mlx_hook(data->mlx_win, 2, 1L << 0, handle_key_press, data);
+	mlx_hook(data->mlx_win, 3, 1L << 1, handle_key_release, data);
+	mlx_loop_hook(data->mlx_ptr, render, data);
+	mlx_loop(data->mlx_ptr);
+}
 
 
 
@@ -47,6 +47,6 @@ int	main(int argc, char **argv)
 	if (argc != 2 || check_extension(argv[1], ".cub", ft_strlen(argv[1])) == 1)
 		err_msg("please enter : ./cub3D [map.cub]\n", data, true);
 	global_init(data, argv);
-	// mlx(data);
+	mlx(data);
 	free_all(data, 0);
 }

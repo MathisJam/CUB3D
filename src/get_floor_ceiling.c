@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_floor_ceiling.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 11:59:52 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/22 12:48:15 by jchen            ###   ########.fr       */
+/*   Updated: 2025/02/04 13:21:47 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int	*convert_to_int_arr(char **tab, t_data *data)
 	i = -1;
 	count = count_strings(tab);
 	if (count != 3)
-		err_msg("F or C is missing one value\n", data, true);
+		err_msg("F or C must have 3 values (R,G,B)\n", data, true);
 	arr = malloc(sizeof(int) * count);
 	if (!arr)
 		return (NULL);
