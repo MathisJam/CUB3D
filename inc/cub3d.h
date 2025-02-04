@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:11:07 by mjameau           #+#    #+#             */
-/*   Updated: 2025/02/04 12:48:27 by jchen            ###   ########.fr       */
+/*   Updated: 2025/02/04 12:57:07 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ typedef struct s_data
 	void		*mlx_win;
 	t_texture	*mlx_img;
 
-	// int			row_nbr;
+	int			row_nbr;
 	// int			column_nbr;
 	// int			map_start;
 	int			player_found;
@@ -187,7 +187,7 @@ bool			is_wall(char c);
 int				is_char(char c);
 void			not_empty(char **map, int y, int x, t_data *data);
 int				invalid_char(char **map, t_data *data);
-void			skip_one_line(int fd);
+int				get_map_len(char **map);
 
 // FREE
 void			err_msg(char *str, t_data *data, bool to_free);

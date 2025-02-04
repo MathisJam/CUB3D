@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map.c                                        :+:      :+:    :+:   */
+/*   check_map_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:36:23 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/24 17:53:37 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/02/04 12:58:47 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,9 +107,9 @@ void	check_map(t_data *data)
 {
 	if (!data->map)
 		err_msg("Map not found in CHECK MAP\n", data, true);
-	if (data->map_start < 7)
-		err_msg("Don't forget the paths to the textures\n", data, true);
-	if (invalid_char(data->map))
+	// if (data->map_start < 7)
+	// 	err_msg("Don't forget the paths to the textures\n", data, true);
+	if (invalid_char(data->map, data))
 		err_msg("Invalid char in map, or not at the end\n", data, true);
 	if (close_check(data, data->map))
 		err_msg("Map is not closed, or is not at the end\n", data, true);

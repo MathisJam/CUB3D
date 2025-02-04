@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:22:49 by jchen             #+#    #+#             */
-/*   Updated: 2025/02/04 12:45:11 by jchen            ###   ########.fr       */
+/*   Updated: 2025/02/04 12:57:16 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ static void	global_init(t_data *data, char **argv)
 {
 	init_data(data);
 	load_map(data, argv[1]);
-	// check_map(data);
+	data->row_nbr = get_map_len(data->map);
+
+	check_map(data);
 	// get_map_info(data, argv[1]);
 	// get_floor_ceiling(data);
 	// init_mlx(data);
@@ -32,6 +34,8 @@ static void	global_init(t_data *data, char **argv)
 // 	mlx_loop_hook(data->mlx_ptr, render, data);
 // 	mlx_loop(data->mlx_ptr);
 // }
+
+
 
 int	main(int argc, char **argv)
 {

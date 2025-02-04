@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:52:23 by mjameau           #+#    #+#             */
-/*   Updated: 2025/02/04 12:41:35 by jchen            ###   ########.fr       */
+/*   Updated: 2025/02/04 12:55:55 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	not_empty(char **map, int y, int x, t_data *data)
 		return ;
 	err_msg("Player outside the map\n", data, true);
 }
+
 
 int	invalid_char(char **map, t_data *data)
 {
@@ -46,15 +47,16 @@ int	invalid_char(char **map, t_data *data)
 	return (0);
 }
 
-void	skip_one_line(int fd)
+int	get_map_len(char **map)
 {
-	int		i;
-	char	*tmp;
+	int i;
 
-	i = -1;
-	while (++i < 1)
+	i = 0;
+
+	while(map[i])
 	{
-		tmp = get_next_line(fd);
-		free(tmp);
+		printf("map[i] : %s", map[i]);
+		i++;
 	}
+	return (i);
 }
