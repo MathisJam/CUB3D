@@ -6,7 +6,7 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:52:23 by mjameau           #+#    #+#             */
-/*   Updated: 2025/02/04 13:11:20 by jchen            ###   ########.fr       */
+/*   Updated: 2025/02/04 16:16:11 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,12 @@ int	get_map_len(char **map)
 	while(map[i])
 		i++;
 	return (i);
+}
+
+void	is_double_texture(t_data *data, int code)
+{
+	if ((code == NORTH && data->no->path) || (code == EAST && data->ea->path)
+		|| (code == SOUTH && data->so->path) || (code == WEST && data->we->path)
+		|| (code == FNUM && data->f_strings) || (code == CNUM && data->c_strings))
+		err_msg("Too many texture\n", data, true);
 }

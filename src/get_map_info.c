@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map_info.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:38:11 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/22 15:47:23 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/02/04 16:00:51 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,18 @@ static char	*catch_path(char *line)
 
 static int	is_texture(t_data *data, char *line)
 {
-	if (ft_strstr(line, "NO") && !data->no->path)
-		return (NORTH);
-	else if (ft_strstr(line, "EA") && !data->ea->path)
-		return (EAST);
-	else if (ft_strstr(line, "WE") && !data->we->path)
-		return (WEST);
-	else if (ft_strstr(line, "SO") && !data->so->path)
-		return (SOUTH);
-	else if (ft_strstr(line, "F") && !data->f_strings)
-		return (FNUM);
-	else if (ft_strstr(line, "C") && !data->c_strings)
-		return (CNUM);
+	if (ft_strstr(line, "NO"))
+		return (is_double_texture(data, NORTH), NORTH);
+	else if (ft_strstr(line, "EA"))
+		return (is_double_texture(data, EAST), EAST);
+	else if (ft_strstr(line, "WE"))
+		return (is_double_texture(data, WEST), WEST);
+	else if (ft_strstr(line, "SO"))
+		return (is_double_texture(data, SOUTH), SOUTH);
+	else if (ft_strstr(line, "F"))
+		return (is_double_texture(data, FNUM), FNUM);
+	else if (ft_strstr(line, "C"))
+		return (is_double_texture(data, CNUM), CNUM);
 	return (-1);
 }
 
