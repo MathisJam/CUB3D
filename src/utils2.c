@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:52:23 by mjameau           #+#    #+#             */
-/*   Updated: 2025/02/04 16:20:04 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/02/04 17:47:57 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,4 @@ void	is_double_texture(t_data *data, int code)
 		|| (code == FNUM && data->f_strings) || (code == CNUM
 			&& data->c_strings))
 		err_msg("Too many texture\n", data, true);
-}
-
-bool	skip_newline(char **map, int *i)
-{
-	while (map[*i][0] == '\n')
-		(*i)++;
-	if (is_map_start(map[*i]))
-		return (true);
-	return (false);
 }

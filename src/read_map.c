@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 18:51:04 by jchen             #+#    #+#             */
-/*   Updated: 2025/02/04 16:20:19 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/02/04 17:17:00 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ bool	is_map_start(char *str)
 	int	i;
 
 	i = 0;
-	if (!str || ft_strlen(str) == 1)
+	if (!str || ft_strlen(str) <= 1)
 		return (false);
 	while (str && (str[i] == '1' || str[i] == ' '))
 		i++;

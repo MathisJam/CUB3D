@@ -3,27 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 16:58:21 by jchen             #+#    #+#             */
-/*   Updated: 2025/02/04 16:20:58 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/02/04 16:33:20 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/*
-   Function name get_next_line
-   Prototype char *get_next_line(int fd);
-   Fichiers de rendu get_next_line.h, get_next_line.c,
-   get_next_line_utils.c
-   Paramètres fd : le descripteur de fichier depuis lequel lire
-   Valeur de retour Le contenu de la ligne lue : comportement correct
-NULL : rien d’autre à lire ou une erreur s’est
-produite
-Fonctions externes autorisées
-read, malloc, free
-Description Écrire une fonction qui retourne une ligne lue
-depuis un descripteur de fichier
- */
 
 #include "libft.h"
 
@@ -115,8 +100,8 @@ char	*ft_read(int fd, char *buffer)
 
 char	*get_next_line(int fd)
 {
-	char *line;
-	static char *buffer;
+	char		*line;
+	static char	*buffer;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:36:23 by mjameau           #+#    #+#             */
-/*   Updated: 2025/02/04 16:19:59 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/02/04 17:48:13 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,13 @@ void	close_check2(t_data *data, char **map, int i, int l)
 {
 	int	next_l;
 
+	if ((is_map_start(map[i]) && is_map_start(map[i + 1])))
+		return ;
+	while (map[i + 1] && map[i + 1][0] == '\n')
+		i++;
 	if (!map[i + 1])
 		return ;
 	next_l = ft_strlen(map[i + 1]) - 1;
-	if (is_map_start(map[i + 1]) || (skip_newline(map, &i) == true))
-		return ;
 	if (next_l - 1 < l)
 	{
 		while (l-- > next_l)

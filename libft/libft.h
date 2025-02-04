@@ -6,7 +6,7 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 11:47:12 by jchen             #+#    #+#             */
-/*   Updated: 2025/01/25 14:16:24 by jchen            ###   ########.fr       */
+/*   Updated: 2025/02/04 16:33:08 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,18 +114,10 @@ int					ft_printptr(void *adr_ptr);
 
 char				*get_next_line(int fd);
 char				*ft_read(int fd, char *buffer);
-char	*ft_get_next(char *buffer);
-void	ft_free(char *s1, char *s2);
-char	*ft_get_line(char *buffer);
-char	*ft_strjoin_free(char *buffer, char *reading);
-// size_t				gnl_strlen(const char *s);
-// int					gnl_strchr_i(const char *s, int c);
-// size_t				gnl_strlcpy(char *dst, const char *src, size_t size);
-// char				*gnl_substr(char const *s, unsigned int start, size_t len);
-// size_t				gnl_strlcat(char *dst, const char *src, size_t size);
-// char				*gnl_shrink_buffer(char *buf, char *line);
-// char				*gnl_expand_buffer(char *buf, int fd);
-// char				*gnl_newread(int fd);
+char				*ft_get_next(char *buffer);
+void				ft_free(char *s1, char *s2);
+char				*ft_get_line(char *buffer);
+char				*ft_strjoin_free(char *buffer, char *reading);
 
 /****************************/
 /*           AUTRE          */
