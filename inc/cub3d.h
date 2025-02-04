@@ -6,7 +6,7 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:11:07 by mjameau           #+#    #+#             */
-/*   Updated: 2025/02/04 12:37:03 by jchen            ###   ########.fr       */
+/*   Updated: 2025/02/04 12:48:27 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,9 +116,9 @@ typedef struct s_data
 	void		*mlx_win;
 	t_texture	*mlx_img;
 
-	int			row_nbr;
-	int			column_nbr;
-	int			map_start;
+	// int			row_nbr;
+	// int			column_nbr;
+	// int			map_start;
 	int			player_found;
 	char		**map;
 
@@ -144,6 +144,7 @@ void			init_textures(t_data *data);
 int				load_map(t_data *data, char *map);
 void			check_map(t_data *data);
 void			get_map_info(t_data *data, char *map);
+bool			is_map_start(char *str);
 void			get_floor_ceiling(t_data *data);
 int				validate_player(t_data *data, char **map, int i, int j);
 
