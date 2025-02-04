@@ -6,7 +6,7 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:38:11 by mjameau           #+#    #+#             */
-/*   Updated: 2025/02/04 16:00:51 by jchen            ###   ########.fr       */
+/*   Updated: 2025/02/04 19:27:00 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,17 @@ static void	get_textures_info(t_data *data, char *line, int code)
 	int	j;
 
 	j = -1;
-	if (code == NORTH && catch_path(line) != NULL)
+	if (code == NORTH && catch_path(line) != NULL && !data->no->path)
 		data->no->path = strdup_without_n(catch_path(line));
-	else if (code == EAST && catch_path(line) != NULL)
+	else if (code == EAST && catch_path(line) != NULL && !data->ea->path)
 		data->ea->path = strdup_without_n(catch_path(line));
-	else if (code == WEST && catch_path(line) != NULL)
+	else if (code == WEST && catch_path(line) != NULL && !data->we->path)
 		data->we->path = strdup_without_n(catch_path(line));
-	else if (code == SOUTH && catch_path(line) != NULL)
+	else if (code == SOUTH && catch_path(line) != NULL && !data->so->path)
 		data->so->path = strdup_without_n(catch_path(line));
-	else if (code == FNUM)
+	else if (code == FNUM && !data->f_strings)
 		data->f_strings = ft_split(line, ',');
-	else if (code == CNUM)
+	else if (code == CNUM && !data->c_strings)
 		data->c_strings = ft_split(line, ',');
 }
 
@@ -89,10 +89,12 @@ void	get_map_info(t_data *data, char *map)
 		free(line);
 		line = get_next_line(fd);
 	}
-	if (valid_textures_info(data) == false)
+	if (valid_textures_info(data) == false || data->dup == true)
 	{
 		free(line);
 		close(fd);
+		if (data->dup == true)
+			err_msg("Too many texture\n", data, true);
 		err_msg("Missing textures paths\n", data, true);
 	}
 	free(line);

@@ -6,7 +6,7 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:52:23 by mjameau           #+#    #+#             */
-/*   Updated: 2025/02/04 17:47:57 by jchen            ###   ########.fr       */
+/*   Updated: 2025/02/04 19:24:10 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,6 @@ void	is_double_texture(t_data *data, int code)
 		|| (code == SOUTH && data->so->path) || (code == WEST && data->we->path)
 		|| (code == FNUM && data->f_strings) || (code == CNUM
 			&& data->c_strings))
-		err_msg("Too many texture\n", data, true);
+		data->dup = true;
+	// err_msg("Too many texture\n", data, true);
 }

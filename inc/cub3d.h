@@ -6,7 +6,7 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:11:07 by mjameau           #+#    #+#             */
-/*   Updated: 2025/02/04 17:48:00 by jchen            ###   ########.fr       */
+/*   Updated: 2025/02/04 19:15:56 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ typedef struct s_data
 	int			row_nbr;
 	int			player_found;
 	char		**map;
+	bool		dup;
 
 	char		**f_strings;
 	char		**c_strings;
