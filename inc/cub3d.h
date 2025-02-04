@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:11:07 by mjameau           #+#    #+#             */
-/*   Updated: 2025/01/24 18:54:59 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/02/04 12:37:03 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,11 +141,9 @@ void			init_mlx(t_data *data);
 void			init_textures(t_data *data);
 
 // MAP
-void			load_map(t_data *data, char *map);
-char			**malloc_map(char *map, t_data *data);
+int				load_map(t_data *data, char *map);
 void			check_map(t_data *data);
 void			get_map_info(t_data *data, char *map);
-bool			is_map_start(char *str);
 void			get_floor_ceiling(t_data *data);
 int				validate_player(t_data *data, char **map, int i, int j);
 
@@ -175,7 +173,7 @@ void			move_backward(t_data *data);
 
 // SAFE FUNCTIONS
 int				safe_open_fd(char *file, int flag, t_data *data);
-void			*malloc_fd(size_t bytes, t_data *data, int *fd);
+void			*calloc_fd(size_t nmemb, size_t bytes, t_data *data, int *fd);
 void			*safe_calloc(size_t nmemb, size_t bytes, t_data *data);
 
 // UTILS
