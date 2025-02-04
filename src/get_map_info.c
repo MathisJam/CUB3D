@@ -6,7 +6,7 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:38:11 by mjameau           #+#    #+#             */
-/*   Updated: 2025/02/04 19:27:00 by jchen            ###   ########.fr       */
+/*   Updated: 2025/02/04 19:30:03 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ static void	get_textures_info(t_data *data, char *line, int code)
 		data->f_strings = ft_split(line, ',');
 	else if (code == CNUM && !data->c_strings)
 		data->c_strings = ft_split(line, ',');
+	else if (code == -1 && catch_path(line) != NULL)
+		data->dup = true;
 }
 
 static bool	valid_textures_info(t_data *data)
@@ -84,8 +86,7 @@ void	get_map_info(t_data *data, char *map)
 	while (line != NULL)
 	{
 		code = is_texture(data, line);
-		if (code > -1)
-			get_textures_info(data, line, code);
+		get_textures_info(data, line, code);
 		free(line);
 		line = get_next_line(fd);
 	}
@@ -94,7 +95,8 @@ void	get_map_info(t_data *data, char *map)
 		free(line);
 		close(fd);
 		if (data->dup == true)
-			err_msg("Too many texture\n", data, true);
+			err_msg("Too many texture (duplicate or wrong texture)\n", data,
+				true);
 		err_msg("Missing textures paths\n", data, true);
 	}
 	free(line);

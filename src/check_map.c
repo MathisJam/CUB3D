@@ -6,7 +6,7 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:36:23 by mjameau           #+#    #+#             */
-/*   Updated: 2025/02/04 17:48:13 by jchen            ###   ########.fr       */
+/*   Updated: 2025/02/04 20:04:55 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,27 +56,34 @@ void	close_check2(t_data *data, char **map, int i, int l)
 {
 	int	next_l;
 
-	if ((is_map_start(map[i]) && is_map_start(map[i + 1])))
+	printf("[%d]%s", i, map[i]);
+	if (((is_map_start(map[i]) && is_map_start(map[i + 1]))))
 		return ;
-	while (map[i + 1] && map[i + 1][0] == '\n')
-		i++;
+	if (map[i][0] == '\n')
+		return ;
+	// while (map[i + 1] && map[i + 1][0] == '\n')
+	// {
+	// 	printf("skip %d\n", i);
+	// 	i++;
+	// }
 	if (!map[i + 1])
 		return ;
 	next_l = ft_strlen(map[i + 1]) - 1;
 	if (next_l - 1 < l)
 	{
 		while (l-- > next_l)
-			if (map[i][l] != '1')
-				err_msg("Map not closed", data, true);
+			if (map[i][l] && map[i][l] != '1')
+				err_msg("Map not closed 1", data, true);
 	}
 	else if (next_l - 1 > l)
 	{
 		while (l++ < next_l - 1)
 			if (map[i + 1][l] != '1')
-				err_msg("Map not closed", data, true);
+				err_msg("Map not closed 2", data, true);
 	}
-	if (map[i + 1][next_l - 1] != '1')
-		err_msg("Map not closed", data, true);
+	if (next_l - 1 > 0 && map[i + 1][next_l - 1] && map[i + 1][next_l
+		- 1] != '1')
+		err_msg("Map not closed 3", data, true);
 }
 
 static int	close_check(t_data *data, char **map)
