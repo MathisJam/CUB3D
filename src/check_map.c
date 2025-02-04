@@ -6,7 +6,7 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:36:23 by mjameau           #+#    #+#             */
-/*   Updated: 2025/02/04 12:43:30 by jchen            ###   ########.fr       */
+/*   Updated: 2025/02/04 13:11:24 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,12 +107,12 @@ void	check_map(t_data *data)
 {
 	if (!data->map)
 		err_msg("Map not found in CHECK MAP\n", data, true);
-	// if (data->map_start < 7)
-	// 	err_msg("Don't forget the paths to the textures\n", data, true);
-	// if (invalid_char(data->map, data))
-	// 	err_msg("Invalid char in map, or not at the end\n", data, true);
+	if (invalid_char(data->map, data))
+		err_msg("Invalid char in map, or is not at the end\n", data, true);
 	// if (close_check(data, data->map))
 	// 	err_msg("Map is not closed, or is not at the end\n", data, true);
 	// if (double_char(data->map, data))
 	// 	err_msg("Need one and only one N S W E char\n", data, true);
+	// if (data->map_start < 7)
+	// 	err_msg("Don't forget the paths to the textures\n", data, true);
 }

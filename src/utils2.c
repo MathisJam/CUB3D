@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:52:23 by mjameau           #+#    #+#             */
-/*   Updated: 2025/02/04 12:55:55 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/02/04 13:11:20 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	invalid_char(char **map, t_data *data)
 	i = -1;
 	while (map[++i])
 	{
+		if (map[i][0] == '\n' && !map[i + 1])
+			err_msg("Map not at the end\n", data, true);
 		j = -1;
 		while (map[i][++j])
 		{
@@ -54,9 +56,6 @@ int	get_map_len(char **map)
 	i = 0;
 
 	while(map[i])
-	{
-		printf("map[i] : %s", map[i]);
 		i++;
-	}
 	return (i);
 }
