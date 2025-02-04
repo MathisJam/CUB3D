@@ -6,7 +6,7 @@
 /*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:36:23 by mjameau           #+#    #+#             */
-/*   Updated: 2025/02/04 13:17:33 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/02/04 16:06:44 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,16 @@ static int	double_char(char **map, t_data *data)
 		return (0);
 }
 
+
+bool	skip_newline(char **map, int *i)
+{
+	while(map[*i][0] == '\n')
+		(*i)++;
+	if (is_map_start(map[*i]))
+		return(true);
+	return(false);
+}
+
 void	close_check2(t_data *data, char **map, int i, int l)
 {
 	int	next_l;
@@ -59,7 +69,7 @@ void	close_check2(t_data *data, char **map, int i, int l)
 	if (!map[i + 1])
 		return ;
 	next_l = ft_strlen(map[i + 1]) - 1;
-	if (is_map_start(map[i + 1]))
+	if (is_map_start(map[i + 1]) || (skip_newline(map, &i) == true))
 		return ;
 	if (next_l - 1 < l)
 	{

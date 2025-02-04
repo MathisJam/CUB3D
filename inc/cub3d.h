@@ -6,7 +6,7 @@
 /*   By: mjameau <mjameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:11:07 by mjameau           #+#    #+#             */
-/*   Updated: 2025/02/04 12:57:07 by mjameau          ###   ########.fr       */
+/*   Updated: 2025/02/04 16:06:59 by mjameau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +188,7 @@ int				is_char(char c);
 void			not_empty(char **map, int y, int x, t_data *data);
 int				invalid_char(char **map, t_data *data);
 int				get_map_len(char **map);
+bool	skip_newline(char **map, int *i);
 
 // FREE
 void			err_msg(char *str, t_data *data, bool to_free);
