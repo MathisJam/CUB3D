@@ -1,6 +1,0 @@
-.gitignore
-**/obj
-**/libft.a
-cub3D
-a.out
-**/mlx_linux
