@@ -6,7 +6,7 @@
 /*   By: jchen <jchen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:11:07 by mjameau           #+#    #+#             */
-/*   Updated: 2025/02/04 19:15:56 by jchen            ###   ########.fr       */
+/*   Updated: 2025/02/05 11:57:24 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +188,7 @@ void			not_empty(char **map, int y, int x, t_data *data);
 int				invalid_char(char **map, t_data *data);
 int				get_map_len(char **map);
 void			is_double_texture(t_data *data, int code);
+void			skip_new_line(t_data *data, char **map, int *i, int *l);
 
 // FREE
 void			err_msg(char *str, t_data *data, bool to_free);
